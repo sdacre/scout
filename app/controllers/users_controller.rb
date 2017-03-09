@@ -20,21 +20,23 @@ class UsersController < Clearance::UsersController
 
 	def create
 	@user = User.new(user_params)
-		respond_to do |format|
 		  if @user.save
 		  @notice = "User created!"
 			else
 			@notice = "User creation FAILED"
 			end 
 		  redirect_to root_path, :notice => @notice
-		end
 	end
 
 
 	private
 	def user_params
-		params.require(:user).permit(:email, :username, :first_name, :last_name, :password, :photo, :remove_photo)
+		params.require(:user).permit(:email,
+																 :username,
+																 :first_name,
+																 :last_name,
+																 :password,
+																 :profile,
+																 :remove_profile)
 	end 
-
-end
 end

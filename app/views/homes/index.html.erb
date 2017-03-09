@@ -1,1 +1,7 @@
-<h1>Dashboard</h1>
+
+
+
+      <% if signed_in? %>
+
+            <%= link_to "View profile", user_path(current_user) %>
+      <% end %>

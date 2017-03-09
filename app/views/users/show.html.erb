@@ -1,18 +1,21 @@
-<div class="row">
-  <div class="col-sm-3"></div> <!-- empty div -->
 
-  <div class="col-sm-6 well text-center top 5">
+
+  <div class="col-sm-6 well text-center">
     <h1 class = "title well"> Profile<br> 
-  <%= image_tag @user.image.thumb.url if @user.image? %></h1><br>
+  <%= image_tag @user.profile.thumb.url if @user.profile? %></h1><br>
   <div class="well">
 		<p class="title">Name: </p><%= @user.first_name %>
 		<%= @user.last_name %><br>
 		<p class="title">Email: </p><%= @user.email %><br>
   </div>
-    <%= form_for @user do |image| %>
-    <%= render partial: '/users/image', object: image %>
+    <%= form_for @user do |profile| %>
+  <h1>Edit Profile</h1>
+  <%= profile.label :upload_profile %><br>
+  <%= profile.file_field :profile %><br>
+
+  <%= profile.label :remove_profile %><br>
+  <%= profile.check_box :remove_profile %><br>
+  <%= profile.submit %>
      <% end %>
  </div>
 
-<div class="row">
-  <div class="col-sm-3"></div> <!-- empty div -->

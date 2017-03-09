@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-	# mount_uploader :image, ImageUploader
+	mount_uploader :profile, ProfileUploader
   include Clearance::User
 end

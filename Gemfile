@@ -5,6 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#photo uploading extension
+gem "mini_magick"
+#photouploading
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+#add facebook auth gems
+gem 'omniauth-facebook'
+gem 'omniauth'
+#add security feature gem to protect API keys--IMPORTANT GEM
+gem "figaro"
 #user password gem
 gem 'clearance'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
