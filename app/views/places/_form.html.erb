@@ -1,4 +1,6 @@
-<%= form_for @place do |form| %>
+
+<div class="container-fluid">
+  <div class="container">
 <div class="text-field">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
@@ -9,8 +11,13 @@
     <%= form.text_area :description, class: "form-control" %>
 
     <div class="text-field">
-        <%= form.label :type %>
-        <%= form.text_area :type, class: "form-control" %>
+        <%= form.label :kind %>
+        <%= form.text_field :kind, class: "form-control" %>
+
+    </div>
+    <div class="number-field">
+        <%= form.label :difficulty %>
+        <%= form.number_field :difficulty, in: 1...4, value: 1, class: "form-control" %>
     </div>
 
     <div class="text-field">
@@ -28,10 +35,6 @@
         <%= form.text_area :address, class: "form-control" %>
     </div>
 
-    <div class="number-field">
-        <%= form.label :difficulty %>
-        <%= form.number_field :beds, in: 1...4, value: 1, class: "form-control" %>
-    </div>
 
     <div class="file-field">
         <%= form.label :image %>
@@ -41,6 +44,7 @@
     <div class="submit-field">
         <%= form.submit %>
     </div>
-    <% end %>
-    <p><%=link_to "Home", user_path(current_user)%>
+</div>
+</div>
+    <p><%=link_to "Home", users_path(current_user)%>
         <%=link_to "Index", places_path%></p>

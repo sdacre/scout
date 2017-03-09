@@ -1,4 +1,4 @@
-<h2><%= @.title %>
+<h2><%= @place.name %>
     <%= @place.difficulty %></h2>
 <div class="carousel-inner">
     <div class="item active">
@@ -8,29 +8,21 @@
     <% @place.image.shift %>
     <% @place.image.each do |image| %>
     <div class="item">
-        <%= image_tag photo, {:class =>"img-response"} %>
+        <%= image_tag image.medium, {:class =>"img-response"} %>
     </div>
     <%end%>
     </div>
     <% end %>
 
 <p><%= @place.description %></p>
-<%= @place.accomodation %>
-<p><%= @place.type %></p>
+<p><%= @place.kind %></p>
 <p><%= @place.address %>
     <%= @place.city %>
     <%= @place.country %></p>
 
-<p>Reviews</p>
-<% @place.reviews.each do |review| %>
-<%= review.name %><br>
-<% end %>
-  <%= form_for @reservation do |form| %>
-  <%= form.hidden_field :place_id, :value => @place.id %>
-<%= render partial: '/reservations/form', object: form %>
-<% end %>
+
 <% if current_user %>
-<p><%=link_to "Home", user_path(current_user)%>
+<p><%=link_to "Home", users_path(current_user)%>
     <%=link_to "Index", places_path%>
     <%=link_to "Update", edit_place_path(@place) %>
 </p>
