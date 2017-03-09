@@ -2,9 +2,9 @@
 <p>Find me in app/views/places/index.html.erb</p>
 
 <% @places.each do |place| %>
-<p> <%=link_to "#{place.title}", place_path(place)%> </p>
+<p> <%=place.image.thumb, link_to "#{place.name}", place_path(place)%> </p>
 <% end %>
-<p><%=link_to "Home", user_path(current_user)%> </p>
+<p><%=link_to "Home", users_path(current_user)%> </p>
 
 <%= form_tag places_path, :method => 'get' do %>
  <p>

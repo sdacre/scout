@@ -9,8 +9,13 @@
     <%= form.text_area :description, class: "form-control" %>
 
     <div class="text-field">
-        <%= form.label :type %>
-        <%= form.text_area :type, class: "form-control" %>
+        <%= form.label :kind %>
+        <%= form.text_area :kind, class: "form-control" %>
+    </div>
+
+    <div class="number-field">
+        <%= form.label :difficulty %>
+        <%= form.number_field :difficulty, in: 1...4, value: 1, class: "form-control" %>
     </div>
 
     <div class="text-field">
@@ -28,11 +33,6 @@
         <%= form.text_area :address, class: "form-control" %>
     </div>
 
-    <div class="number-field">
-        <%= form.label :difficulty %>
-        <%= form.number_field :beds, in: 1...4, value: 1, class: "form-control" %>
-    </div>
-
     <div class="file-field">
         <%= form.label :image %>
         <%= form.file_field :image, multiple: true, class: "form-control" %>
@@ -42,5 +42,5 @@
         <%= form.submit %>
     </div>
     <% end %>
-    <p><%=link_to "Home", user_path(current_user)%>
+    <p><%=link_to "Home", users_path(current_user)%>
         <%=link_to "Index", places_path%></p>

@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   def new
-    Place.new
+    @place = Place.new
   end
 
   def create
@@ -15,11 +15,12 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    @places = @places.similar_to(params[:query]) if params[:query].present
+    @places = @places.similar_to(params[:query]) if params[:query]
 
     render template: 'places/index' # render partial: 'places/index'
+  end
     def show
-      @review = current_user.reviews.new
+      # @review = current_user.reviews.new
       @place = Place.find_by(id: params[:id])
       render template: 'places/show'
 end
@@ -42,10 +43,11 @@ end
 
 def destroy
   @place = Place.find_by(id: params[:id])
+end
 
   private
 
   def place_params
-  params.require(:place).permit(:name, :type, :address, :city, :country, :difficulty, :description, {images: []})
+  params.require(:place).permit(:name, :kind, :address, :city, :country, :difficulty, :description, {image: []})
   end
 end

@@ -7,6 +7,8 @@ CarrierWave.configure do |config|
       :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],  # required
       :region                 => 'ap-southeast-1'
     }
+    config.storage = :fog
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
     config.fog_use_ssl_for_aws = false
     config.fog_directory       = ENV['S3_BUCKET']
   end         # required

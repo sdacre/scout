@@ -41,7 +41,7 @@ gem 'jbuilder', '~> 2.5'
 # Use figaro to keep hidden files from uploading to github
 gem 'figaro'
 # Use fog for storing documents with S3
-gem 'fog'
+gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
