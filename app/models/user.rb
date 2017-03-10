@@ -1,4 +1,17 @@
 class User < ApplicationRecord
-	mount_uploader :profile, ProfileUploader
+  mount_uploader :profile, ProfileUploader
   include Clearance::User
+  has_many :authentications, :dependent => :destroy
+
+def self.create_with_auth_and_hash(authentication, auth_hash)
+      user = User.create!(username: auth_hash["username"], email: auth_hash["extra"]["raw_info"]["email"])
+      user.authentications << (authentication)
+      return user
+end
+
+  def fb_token
+    x = self.authentications.where(:provider => :facebook).first
+    return x.token unless x.nil?
+  end
+
 end
