@@ -1,0 +1,12 @@
+<div id="clearance" class="create-place">
+  <h2><%= t(".title") %></h2>
+
+  <%= form_for @place do |form| %>
+    <%= render partial: '/places/form', object: form %>
+
+
+
+    <div class="other-links">
+    </div>
+  <% end %>
+</div>
