@@ -12,8 +12,6 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #add facebook auth gems
 gem 'omniauth-facebook'
 gem 'omniauth'
-#add security feature gem to protect API keys--IMPORTANT GEM
-gem "figaro"
 #user password gem
 gem 'clearance'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
