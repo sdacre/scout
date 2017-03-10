@@ -80,16 +80,6 @@ GEM
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
-<<<<<<< HEAD
-=======
-
-
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
-    hashie (3.5.3)
-
-
->>>>>>> 969a7ec40c9bb185bb05b5e7e97d774988b1af29
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.38.0)
@@ -221,7 +211,6 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.5.4)
-
     i18n (0.8.1)
     inflecto (0.0.2)
     ipaddress (0.8.3)
@@ -360,7 +349,6 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mini_magick
-
   omniauth
   omniauth-facebook
   pg (~> 0.18)

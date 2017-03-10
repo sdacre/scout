@@ -31,11 +31,33 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit:[50, 50]
+    process resize_to_fit:[300, 300]
+    process :add_text
   end
+
+
+  def add_text
+    manipulate! do |medium|
+      medium.combine_options do |c|
+        c.gravity 'Center'
+        c.pointsize '22'
+        c.draw "text 0,0 '#{self.model.name}'"
+        c.fill 'white'
+      end
+      medium
+    end    
+  end
+
+
+
   version :medium do
     process resize_to_fit:[250, 250]
   end
+
+
+
+  process :resize_to_limit => [800, 800]
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
