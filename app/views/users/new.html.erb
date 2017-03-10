@@ -1,5 +1,11 @@
+
 <div id="clearance" class="sign-up">
   <h2><%= t(".title") %></h2>
+
+
+<div id="clearance" class="sign-up well text-center">
+  <h2 class="title">Sign up</h2>
+  <p class ="error"></p>
 
   <%= form_for @user do |form| %>
     <%= render partial: '/users/form', object: form %>
@@ -8,9 +14,14 @@
       <%= form.submit %>
     </div>
 
+
     <div class="other-links">
       <%= link_to t(".sign_in"), sign_in_path %><br>
       <%= link_to "Sign in with Facebook", "/auth/facebook" %>
     </div>
   <% end %>
 </div>
+
+  <% end %>
+</div>
+

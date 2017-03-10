@@ -5,6 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#photo uploading extension
+gem "mini_magick"
+#photouploading
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+#add facebook auth gems
+gem 'omniauth-facebook'
+gem 'omniauth'
+#add security feature gem to protect API keys--IMPORTANT GEM
+gem "figaro"
 #user password gem
 gem 'clearance'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -36,7 +45,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# Use figaro to keep hidden files from uploading to github
+gem 'figaro'
+# Use fog for storing documents with S3
+gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310023121) do
+
+ActiveRecord::Schema.define(version: 20170309132907) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +25,36 @@ ActiveRecord::Schema.define(version: 20170310023121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.string   "kind"
+    t.string   "address"
+    t.string   "city"
+    t.string   "country"
+    t.integer  "difficulty"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+    t.json     "image"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "place_id"
+    t.integer  "user_id"
+    t.integer  "rate_general"
+    t.string   "desc_general"
+    t.integer  "rate_safe"
+    t.string   "desc_safe"
+    t.integer  "rate_clean"
+    t.string   "desc_clean"
+    t.integer  "rate_scenery"
+    t.string   "desc_scenery"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170310023121) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "profile"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
