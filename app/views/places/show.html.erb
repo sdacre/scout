@@ -1,0 +1,31 @@
+<h2><%= @place.name %>
+    <%= @place.difficulty %></h2>
+<div class="carousel-inner">
+    <div class="item active">
+      <% if @place.image.present? %>
+        <%=image_tag @place.image.first, {:class => "img-response"} %>
+    </div>
+    <% @place.image.shift %>
+    <% @place.image.each do |image| %>
+    <div class="item">
+        <%= image_tag image.medium, {:class =>"img-response"} %>
+    </div>
+    <%end%>
+    </div>
+    <% end %>
+
+<p><%= @place.description %></p>
+<p><%= @place.kind %></p>
+<p><%= @place.address %>
+    <%= @place.city %>
+    <%= @place.country %></p>
+
+
+<% if current_user %>
+<p><%=link_to "Home", users_path(current_user)%>
+    <%=link_to "Index", places_path%>
+    <%=link_to "Update", edit_place_path(@place) %>
+</p>
+<% else %>
+<%= link_to t(".sign_up"), sign_up_path %>
+<%end%>

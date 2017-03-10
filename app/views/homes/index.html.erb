@@ -1,1 +1,43 @@
-<h1>Dashboard</h1>
+
+
+      <% if signed_in? %>
+
+            <%= link_to "View profile", user_path(current_user) %>
+      <% end %>
+
+      <div class="jumbotron">
+          <div class="container-fluid">
+            <div class="container">
+              <h1 style="margin-left: auto; margin-right: auto; width: 800px; height: 80px;">Where do you want to run?</h1>
+              <div class="find-location">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default">Find a location</button>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="#">Kuala Lumpur</a>
+                    </li>
+                    <li>
+                      <a href="#">Ipoh</a>
+                    </li>
+                    <li>
+                      <a href="#">Malacca</a>
+                    </li>
+                    <li>
+                      <a href="#">Johor Bahru</a>
+                    </li>
+                    <li>
+                      <a href="#">Penang</a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+        </div>
+                <!-- Split button -->
+    </div>
+

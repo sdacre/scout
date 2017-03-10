@@ -1,0 +1,11 @@
+<p>Reviews</p>
+<% if @place.reviews %>
+<% @place.reviews.each do |review| %>
+<%= review.name %><br>
+<% end %>
+<% end %>
+  <%= form_for @reviews do |form| %>
+  <%= form.hidden_field :place_id, :value => @place.id %>
+<%= render partial: '/reservations/form', object: form %>
+
+<% end %>
