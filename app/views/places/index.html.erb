@@ -2,7 +2,7 @@
 <p>Find me in app/views/places/index.html.erb</p>
 
 <% @places.each do |place| %>
-<p> <%=place.image.thumb, link_to "#{place.name}", place_path(place)%> </p>
+<p> <%=image_tag place.image[0].thumb.url%> <%= link_to "#{place.name}", place_path(place)%> </p>
 <% end %>
 <p><%=link_to "Home", users_path(current_user)%> </p>
 
@@ -13,3 +13,7 @@
  </p>
 
 <%end %>
+<div class="other-links">
+  <p><%=link_to "Home", user_path(current_user)%>
+      <%=link_to "Index", places_path%></p>
+</div>
