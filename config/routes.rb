@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :places, controller: "places" do 
-    resources :reviews, only: [:index, :edit, :destroy]
+    resources :reviews, only: [:new, :create, :index, :edit, :destroy]
 	end
 
 

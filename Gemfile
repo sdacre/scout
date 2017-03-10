@@ -44,7 +44,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use figaro to keep hidden files from uploading to github
-gem 'figaro'
+# gem 'figaro'
 # Use fog for storing documents with S3
 gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
