@@ -16,7 +16,7 @@
 
 
 <% if current_user %>
-<p><%=link_to "Home", users_path(current_user)%>
+<p><%=link_to "Home", user_path(current_user)%>
     <%=link_to "Index", places_path%>
     <%=link_to "Update", edit_place_path(@place) %>
 </p>
