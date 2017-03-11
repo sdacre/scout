@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   mount_uploaders :image, ImageUploader
+  has_many :reviews
   include PgSearch
   #  multisearchable against: [:name, :city, :country, :description]
    pg_search_scope :search_places, :against => [
@@ -15,11 +16,6 @@ class Place < ApplicationRecord
   }
 
 end
-
-
-
-  # has_many :reviews
-
 
   # pg_search_scope :search,
   #                 :against => [:name, :city, :address, :country, :description],
