@@ -1,48 +1,59 @@
+<div class="container1">
 
-<div class="container-fluid">
-  <div class="container">
-<div class="text-field">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-</div>
+    <div class="row">
+        <div class="col-sm-6 col-md-12">
+            <div class="thumbnail">
 
-<div class="text-field">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: "form-control" %>
+                <div class="text-field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, class: "form-control" %>
+                </div>
 
-    <div class="text-field">
-        <%= form.label :kind %>
-        <%= form.text_field :kind, class: "form-control" %>
+                <div class="text-field">
+                    <%= form.label :description %>
+                    <%= form.text_area :description, class: "form-control" %>
 
+                    <div class="text-field">
+                        <%= form.label :kind %>
+                        <%= form.text_field :kind, class: "form-control" %>
+
+                    </div>
+                    <div class="number-field">
+                        <%= form.label :difficulty %>
+                        <%= form.number_field :difficulty, in: 1...4, value: 1, class: "form-control" %>
+                    </div>
+
+                    <div class="text-field">
+                        <%= form.label :country %>
+                        <%= form.text_area :country, class: "form-control" %>
+                    </div>
+
+                    <div class="text-field">
+                        <%= form.label :city %>
+                        <%= form.text_area :city, class: "form-control" %>
+                    </div>
+
+                    <div class="text-field">
+                        <%= form.label "street number, street name, and zip code" %>
+                        <%= form.text_area :address, class: "form-control" %>
+                    </div>
+
+                    <div class="file-field">
+                        <%= form.label :image %>
+                        <%= form.file_field :image, multiple: true, class: "form-control" %>
+                    </div>
+                    <br>
+                    <div class="submit-field">
+                        <%= form.submit %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="number-field">
-        <%= form.label :difficulty %>
-        <%= form.number_field :difficulty, in: 1...4, value: 1, class: "form-control" %>
-    </div>
 
-    <div class="text-field">
-        <%= form.label :country %>
-        <%= form.text_area :country, class: "form-control" %>
-    </div>
+    <p><%=link_to "Home", users_path(current_user)%><br>
+        <%=link_to "Index", places_path%></p>
 
-    <div class="text-field">
-        <%= form.label :city %>
-        <%= form.text_area :city, class: "form-control" %>
-    </div>
-
-    <div class="text-field">
-        <%= form.label "street number, street name, and zip code" %>
-        <%= form.text_area :address, class: "form-control" %>
-    </div>
-
-
-    <div class="file-field">
-        <%= form.label :image %>
-        <%= form.file_field :image, multiple: true, class: "form-control" %>
-    </div>
-
-    <div class="submit-field">
-        <%= form.submit %>
-    </div>
 </div>
 </div>

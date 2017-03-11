@@ -12,8 +12,6 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 #add facebook auth gems
 gem 'omniauth-facebook'
 gem 'omniauth'
-#add security feature gem to protect API keys--IMPORTANT GEM
-gem "figaro"
 #user password gem
 gem 'clearance'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,7 +30,9 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass', '~> 3.3.7'
-
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -49,6 +49,7 @@ gem 'figaro'
 gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'pg_search'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
