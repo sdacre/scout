@@ -1,25 +1,87 @@
-<h2><%= @place.name %>
-    <%= @place.difficulty %></h2>
+<h2><%= @place.name %></h2>
+<div class="carousel-inner">
+  <div class="item active">
+    <% if @place.image.present? %>
+      <%= image_tag @place.image.first, {:class => "img-response"} %>
+  </div>
+    <% @place.image.shift %>
+    <% @place.image.each do |image| %>
+    <div class="item">
+      <%= image_tag image.medium, {:class =>"img-response"} %>
+    <% end %>
+    </div>
+</div>
+    <% end %>
 
-  <% @place.image.each do |image| %>
+<p>Track Difficulty: <strong><%= @place.difficulty %> / 5</strong></p>
+<p>Description: <strong><%= @place.description %></strong></p>
+<p>Type: <strong><%= @place.kind %></strong></p>
+<p>Address: <strong><%= @place.address %></strong></p>
+<p>City: <strong><%= @place.city %></strong></p>
+<p>Country: <strong><%= @place.country %></strong></p>
+<hr>
+<!-- reviews#new / reviews#create -->
+<hr>
+Ran here before? Write your review for this place!
+<%= form_for [@place, @review] do |f| %>
+<span>
+    <div id="general" style="display: inline;">Awesomeness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_general, placeholder: "Elaborate your rating here" %>
+</span><br>
 
-    <%= image_tag image.medium.url if @place.image? %>
-  <% end %>
+<span>
+    <div id="safe" style="display: inline;">Safetyness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_safe, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+    <div id="clean" style="display: inline;">Cleanliness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_clean, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+    <div id="scenery" style="display: inline;">Scenery:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
+</span><br>
+<br>
+<%= f.submit value: "Submit my rating!" %>
+<% end %>
 
 
+<script>
+$('#general').raty({
+  scoreName : 'review[rate_general]', 
+});
 
-<p><%= @place.description %></p>
-<p><%= @place.kind %></p>
-<p><%= @place.address %>
-    <%= @place.city %>
-    <%= @place.country %></p>
+$('#safe').raty({
+  scoreName : 'review[rate_safe]', 
+});
 
+$('#clean').raty({
+  scoreName : 'review[rate_safe]', 
+});
+
+$('#scenery').raty({
+  scoreName : 'review[rate_safe]', 
+});
+
+</script>
+
+<hr>
 
 <% if current_user %>
-<p><%=link_to "Home", user_path(current_user)%>
-    <%=link_to "Index", places_path%>
-    <%=link_to "Update", edit_place_path(@place) %>
+<p><%=link_to "Home", users_path(current_user)%>
+  <%=link_to "Index", places_path%>
+  <%=link_to "Update", edit_place_path(@place) %>
 </p>
 <% else %>
-<%= link_to t(".sign_up"), sign_up_path %>
-<%end%>
+  <%= link_to t(".sign_up"), sign_up_path %>
+<% end %>

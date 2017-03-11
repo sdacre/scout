@@ -11,14 +11,12 @@ class ReviewsController < ApplicationController
 	# end
 
 	def create
-		byebug
-		@current_place = Place.find(params[:place_id])
-		@review = @current_place.reviews.new(review_params)
-		@review.place_id = params[:id]
+		@place = Place.find(params[:place_id])
+		@review = @place.reviews.new(review_params)
 		if @review.save
-			redirect_to place_path(params[:place_id])
-		else
-			redirect_to new_place_review_path
+			redirect_to place_path(@place)
+		# else
+		# 	redirect_to new_place_review_path
 		end
 	end
 
