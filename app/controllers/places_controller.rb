@@ -25,6 +25,19 @@ class PlacesController < ApplicationController
     # @reviews = Review.
     render template: 'places/show'
   end
+    @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
+
+    render template: 'places/index' # render partial: 'places/index'
+  end
+    def show
+      # @reviews = Review.find_by(place_id: params[:id])
+      # @review = current_user.reviews.new
+      @place = Place.find(params[:id])
+      render template: 'places/show'
+end
+
+def edit
+  @place = Place.find_by(id: params[:id])
 
   def edit
     @place = Place.find_by(id: params[:id])

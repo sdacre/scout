@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 	resources :places
   
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 	end
 
 
- 
-
-
-
   # get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   # delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   # get "/sign_up" => "clearance/users#new", as: "sign_up"
 
+
   root 'homes#index'
+
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  
 end
