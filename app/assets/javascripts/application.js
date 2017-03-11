@@ -15,3 +15,10 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function() {
+		     $('.carousel').carousel();
+		     $( '.item:first' ).addClass( 'active');
+});
+		  

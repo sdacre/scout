@@ -1,25 +1,47 @@
-<h2><%= @place.name %>
-    <%= @place.difficulty %></h2>
-
-  <% @place.image.each do |image| %>
-
-    <%= image_tag image.medium.url if @place.image? %>
-  <% end %>
-
-
-
-<p><%= @place.description %></p>
-<p><%= @place.kind %></p>
-<p><%= @place.address %>
-    <%= @place.city %>
-    <%= @place.country %></p>
+<div class="container">
+	<div class ="row">
+	<div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+		<h1><%= @place.name %></h1>
+		<p>Difficulty: <%= @place.difficulty %>
+		Description: <%= @place.description %>
+		Kind: <%= @place.kind %>
+		Address: <%= @place.address %>
+		City: <%= @place.city %>
+		Country: <%= @place.country %></p>
 
 
-<% if current_user %>
-<p><%=link_to "Home", users_path(current_user)%>
-    <%=link_to "Index", places_path%>
-    <%=link_to "Update", edit_place_path(@place) %>
-</p>
-<% else %>
-<%= link_to t(".sign_up"), sign_up_path %>
-<%end%>
+		<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
+		  <div class="carousel-inner">
+		  <% @place.image.each do |image| %>
+		    <div class="item">
+		         <%= image_tag image.medium.url if @place.image? %>
+		         <% end %>
+		    </div>
+
+
+		  <!-- Controls -->
+		   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left"></span>
+		   </a>
+		   <a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right"></span>
+		  </a>
+		</div>
+		</div>
+		 <div class="col-sm-1">
+  	</div>
+	</div>
+</div>
+
+		<% if current_user %>
+		<p><%=link_to "Home", users_path(current_user)%>
+		    <%=link_to "Index", places_path%>
+		    <%=link_to "Update", edit_place_path(@place) %>
+		</p>
+		<% else %>
+		<%= link_to t(".sign_up"), sign_up_path %>
+		<%end%>
+
+   

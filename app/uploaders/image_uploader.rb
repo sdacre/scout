@@ -31,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit:[300, 300]
+    process resize_to_fill:[300, 300]
     process :add_text
   end
 
@@ -40,8 +40,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     manipulate! do |medium|
       medium.combine_options do |c|
         c.gravity 'Center'
-        c.pointsize '30'
+        c.pointsize '40'
         c.draw "text 0,0 '#{self.model.name}'"
+        c.font 'Impact'
         c.fill 'white'
       end
       medium
@@ -51,7 +52,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   version :medium do
-    process resize_to_fit:[250, 250]
+    process resize_to_fill:[500, 400]
   end
 
 
