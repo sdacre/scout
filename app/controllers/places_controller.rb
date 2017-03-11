@@ -15,13 +15,14 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    @places = @places.similar_to(params[:query]) if params[:query]
+    @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
 
     render template: 'places/index' # render partial: 'places/index'
   end
     def show
+      # @reviews = Review.find_by(place_id: params[:id])
       # @review = current_user.reviews.new
-      @place = Place.find_by(id: params[:id])
+      @place = Place.find(params[:id])
       render template: 'places/show'
 end
 
