@@ -40,7 +40,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     manipulate! do |medium|
       medium.combine_options do |c|
         c.gravity 'Center'
-        c.pointsize '22'
+        c.pointsize '30'
         c.draw "text 0,0 '#{self.model.name}'"
         c.fill 'white'
       end
