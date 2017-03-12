@@ -1,4 +1,4 @@
-<h2><%= @place.name %></h2>
+<h2><div id="mean_rate"><strong><%= @place.name %> </strong></div></h2>
 <div class="carousel-inner">
   <div class="item active">
     <% if @place.image.present? %>
@@ -13,31 +13,70 @@
 </div>
     <% end %>
 
-
-<div id="t_diff">Track difficulty: </div>
+<p><div id="t_diff">Track difficulty: </div></p>
 <p>Description: <strong><%= @place.description %></strong></p>
 <p>Type: <strong><%= @place.kind %></strong></p>
 <p>Address: <strong><%= @place.address %></strong></p>
 <p>City: <strong><%= @place.city %></strong></p>
 <p>Country: <strong><%= @place.country %></strong></p>
 
-<div id="mean_rate">General Rating: </div>
 <hr>
 
-<h4>What others think of this place: </h4>
+<h4><strong>What others think of this place: </strong></h4>
 <% if @place_reviews.count < 1 %>
 	<h4>No reviews yet. Submit the first review now!</h4>
 <% elsif @place_reviews.count == 1 %>
-	<strong><%= @place_reviews.user.username %></strong>:<br>
-	<div id="mean_rate">Overall Rating: </div><br>
-	<div id="u_gen">Awesomeness: </div><br>
-	<div id="u_safe">Safetyness: </div><br>
-	<div id="u_clean">Cleanliness: </div><br>
-	<div id="u_scenery">Scenery: </div><br>
-<% end %>
+	<% @place_reviews.each do |x| %>
+		<div id="u_mean"><strong><%= x.user.username %></strong>: </div><br>
+		<div id="u_gen">Awesomeness: </div>
+		<p><%= x.desc_general %></p>
+		<div id="u_safe">Safetyness: </div>
+		<p><%= x.desc_safe %></p>
+		<div id="u_clean">Cleanliness: </div>
+		<p><%= x.desc_clean %></p>
+		<div id="u_scenery">Scenery: </div>
+		<p><%= x.desc_scenery %></p>
+
+<!-- JS for existing reviews(single reviews) -->
+<script>
+$('#u_mean').raty({
+  readOnly:   true,
+  starHalf:		'star-half.png',
+	start:   		<%= avg_user_rating(x) %>,
+});
+
+$('#u_gen').raty({
+  readOnly:   true,
+	start:   		<%= x.rate_general %>,
+});
+
+$('#u_safe').raty({
+  readOnly:   true,
+	start:   		<%= x.rate_safe %>,
+});
+
+$('#u_clean').raty({
+  readOnly:   true,
+	start:   		<%= x.rate_clean %>,
+});
+
+$('#u_scenery').raty({
+  readOnly:   true,
+	start:   		<%= x.rate_scenery %>,
+});
+</script>
+	<% end %>
+
+<!-- JS for existing reviews(multiple reviews) -->
+<% elsif @place_reviews.count > 1 %>
+	<% @places_reviews.all.order(created_at: :desc).each do |p_review| %>
+	<%= p_review.user.username %>
+
+<% end %>	
+
+<hr>
 
 <!-- reviews#new / reviews#create -->
-<hr>
 Ran here before? Write your review for this place!
 <%= form_for [@place, @new_review] do |f| %>
 <span>
@@ -84,7 +123,7 @@ Ran here before? Write your review for this place!
   <%= link_to t(".sign_up"), sign_up_path %>
 <% end %>
 
-<!-- start of JS for star ratings -->
+<!-- JS for star ratings -->
 <script>
 $('#general').raty({
 	start:     2,
@@ -107,41 +146,17 @@ $('#scenery').raty({
 });
 
 $('#t_diff').raty({
-  readOnly:   true, 
-  start:   		<%= @place.difficulty %>,
+  readOnly:  true, 
+  number:    3,
+  start:   	 <%= @place.difficulty %>,
 });
 
 $('#mean_rate').raty({
   half:       true,
-  start:   		<%= mean_of_rating(@place) %>,
+  start:   		<%= avg_place_rating(@place) %>,
   readOnly:   true,
   starHalf:   'star-half-big.png',
   starOff:    'star-off-big.png',
   starOn:     'star-on-big.png'
 });
-
-////// user reviews //////////////////////
-
-$('#u_gen').raty({
-  readOnly:   true
-	start:   		<%= @place_reviews.rate_general %>,
-});
-
-$('#u_safe').raty({
-  readOnly:   true
-	start:   		<%= @place_reviews.rate_safe %>,
-});
-
-$('#u_clean').raty({
-  readOnly:   true
-	start:   		<%= @place_reviews.rate_clean %>,
-});
-
-$('#u_scenery').raty({
-  readOnly:   true
-	start:   		<%= @place_reviews.rate_scenery %>,
-});
-
 </script>
-<!-- end of JS -->
-<hr>

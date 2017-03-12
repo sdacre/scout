@@ -438,7 +438,7 @@
 		click:			null,
 		half:			false,
 		hintList:		['Ugh!', 'Meh.', 'Cool!', 'Sweet!', 'Awsome!'],
-		noRatedMsg:		'not rated yet',
+		noRatedMsg:		'no ratings yet',
 		number:			5,
 		path:			'/',
 		iconRange:		[],
