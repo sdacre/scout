@@ -13,17 +13,33 @@
 </div>
     <% end %>
 
-<p>Track Difficulty: <strong><%= @place.difficulty %> / 5</strong></p>
+
+<div id="t_diff">Track difficulty: </div>
 <p>Description: <strong><%= @place.description %></strong></p>
 <p>Type: <strong><%= @place.kind %></strong></p>
 <p>Address: <strong><%= @place.address %></strong></p>
 <p>City: <strong><%= @place.city %></strong></p>
 <p>Country: <strong><%= @place.country %></strong></p>
+
+<div id="mean_rate">General Rating: </div>
 <hr>
+
+<h4>What others think of this place: </h4>
+<% if @place_reviews.count < 1 %>
+	<h4>No reviews yet. Submit the first review now!</h4>
+<% elsif @place_reviews.count == 1 %>
+	<strong><%= @place_reviews.user.username %></strong>:<br>
+	<div id="mean_rate">Overall Rating: </div><br>
+	<div id="u_gen">Awesomeness: </div><br>
+	<div id="u_safe">Safetyness: </div><br>
+	<div id="u_clean">Cleanliness: </div><br>
+	<div id="u_scenery">Scenery: </div><br>
+<% end %>
+
 <!-- reviews#new / reviews#create -->
 <hr>
 Ran here before? Write your review for this place!
-<%= form_for [@place, @review] do |f| %>
+<%= form_for [@place, @new_review] do |f| %>
 <span>
     <div id="general" style="display: inline;">Awesomeness:<br></div>
 </span>
@@ -52,30 +68,12 @@ Ran here before? Write your review for this place!
     <%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
 </span><br>
 <br>
-<%= f.submit value: "Submit my rating!" %>
+	<% if current_user == nil %>
+		<%= link_to "Log in to submit your rating!", sign_in_path %>
+	<% else %>
+		<%= f.submit value: "Submit my rating!" %>
+	<% end %>
 <% end %>
-
-
-<script>
-$('#general').raty({
-  scoreName : 'review[rate_general]', 
-});
-
-$('#safe').raty({
-  scoreName : 'review[rate_safe]', 
-});
-
-$('#clean').raty({
-  scoreName : 'review[rate_safe]', 
-});
-
-$('#scenery').raty({
-  scoreName : 'review[rate_safe]', 
-});
-
-</script>
-
-<hr>
 
 <% if current_user %>
 <p><%=link_to "Home", users_path(current_user)%>
@@ -85,3 +83,65 @@ $('#scenery').raty({
 <% else %>
   <%= link_to t(".sign_up"), sign_up_path %>
 <% end %>
+
+<!-- start of JS for star ratings -->
+<script>
+$('#general').raty({
+	start:     2,
+  scoreName: 'review[rate_general]', 
+});
+
+$('#safe').raty({
+  start:     2,
+  scoreName: 'review[rate_safe]', 
+});
+
+$('#clean').raty({
+  start:     2,
+  scoreName: 'review[rate_clean]', 
+});
+
+$('#scenery').raty({
+  start:     2,
+  scoreName: 'review[rate_scenery]', 
+});
+
+$('#t_diff').raty({
+  readOnly:   true, 
+  start:   		<%= @place.difficulty %>,
+});
+
+$('#mean_rate').raty({
+  half:       true,
+  start:   		<%= mean_of_rating(@place) %>,
+  readOnly:   true,
+  starHalf:   'star-half-big.png',
+  starOff:    'star-off-big.png',
+  starOn:     'star-on-big.png'
+});
+
+////// user reviews //////////////////////
+
+$('#u_gen').raty({
+  readOnly:   true
+	start:   		<%= @place_reviews.rate_general %>,
+});
+
+$('#u_safe').raty({
+  readOnly:   true
+	start:   		<%= @place_reviews.rate_safe %>,
+});
+
+$('#u_clean').raty({
+  readOnly:   true
+	start:   		<%= @place_reviews.rate_clean %>,
+});
+
+$('#u_scenery').raty({
+  readOnly:   true
+	start:   		<%= @place_reviews.rate_scenery %>,
+});
+
+</script>
+<!-- end of JS -->
+<hr>

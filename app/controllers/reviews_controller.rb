@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 	def create
 		@place = Place.find(params[:place_id])
 		@review = @place.reviews.new(review_params)
+		@review.user_id = current_user.id
 		if @review.save
 			redirect_to place_path(@place)
 		# else
