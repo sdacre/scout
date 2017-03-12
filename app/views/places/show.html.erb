@@ -1,49 +1,54 @@
 
 
-<div class="container">
+<div class="container-fluid">
 	<div class ="row">
-		<div class="col-sm-3">
+		<div class="col-sm-1">
   	</div>
-  	<div class="col-sm-6 title text-center">
-		<h1><%= @place.name %></h1>
-		<p>Difficulty: <%= @place.difficulty %><br>
-
-		Description: <%= @place.description %><br>
-		Kind: <%= @place.kind %><br>
-		Address: <%= @place.address %><br>
-		City: <%= @place.city %><br>
-		Country: <%= @place.country %></p>
-		<%= @place.longitude %>
-		<%= @place.latitude %>
-
-
-
-
-		<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
-    <!-- Wrapper for slides -->
-  		<div class="carousel-inner">
-  		<% @place.image.each do |image| %>
-   			<div class="item">
-   			<%= image_tag image.medium.url if @place.image? %>
-    		</div>
-  <!-- Controls -->
-   			<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    		<span class="glyphicon glyphicon-chevron-left"></span>
-   			</a>
-   			<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
-    		<span class="glyphicon glyphicon-chevron-right"></span>
-  			</a>
-  			<% end %>
-			</div>
-			<a href="https://www.google.com/maps/dir/#{@place.latitude}%2C#{@place.longitude}/">
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude}%2C#{@place.longitude}&zoom=13&scale=false&size=555x370&maptype=roadmap&format=png&visual_refresh=true" %></a>
+  	<div class="col-sm-10 title inline well">
+			<h1><%= @place.name %></h1>
+			Difficulty: <%= @place.difficulty %><br>
+			Description: <%= @place.description %><br>
+			Kind: <%= @place.kind %><br>
+			Address: <%= @place.address %><br>
+			City: <%= @place.city %><br>
+			Country: <%= @place.country %></p><br>
+			<%= @place.longitude %>
+			<%= @place.latitude %>
 		</div>
-		<div class="col-sm-3">
-  	</div>
+		<div class="col-sm-1">
+		</div>
 	</div>
 
 
-
+	<div class ="row">
+		<div class="col-sm-1">
+		</div>
+  		<div class="col-sm-5 title inline">
+				<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
+		    <!-- Wrapper for slides -->
+	  			<div class="carousel-inner">
+	  			<% @place.image.each do |image| %>
+	   				<div class="item">
+	   				<%= image_tag image.medium.url if @place.image? %>
+	    			</div>
+	  <!-- Controls -->
+		   			<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		    		<span class="glyphicon glyphicon-chevron-left"></span>
+		   			</a>
+		   			<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+		    		<span class="glyphicon glyphicon-chevron-right"></span>
+		  			</a>
+  				<% end %>
+				</div>
+			</div>
+			<div class="col-sm-5 title inline">
+			<a href="https://www.google.com/maps/dir/#{@place.latitude}%2C#{@place.longitude}/">
+			<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=500x370&maptype=roadmap&format=png&visual_refresh=true" %></a>
+			</div>
+		<div class="col-sm-1">
+		</div>
+		<div class=row>
+			<div class="col-sm-12">
 		<% if current_user %>
 		<p><%=link_to "Home", users_path(current_user)%>
 		    <%=link_to "Index", places_path%>
@@ -52,3 +57,7 @@
 		<% else %>
 		<%= link_to t(".sign_up"), sign_up_path %>
 		<%end%>
+		</div>
+		</div>
+	</div>
+
