@@ -16,15 +16,21 @@ class PlacesController < ApplicationController
   def index
     @places = Place.all
     @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
-
+      if params[:search].present?
+      @locations = Place.near(params[:search], 50, :order => :distance)
+      else
+      @locations = Place.all
+      end
     render template: 'places/index' # render partial: 'places/index'
   end
-    def show
-      # @reviews = Review.find_by(place_id: params[:id])
-      # @review = current_user.reviews.new
-      @place = Place.find(params[:id])
-      render template: 'places/show'
-end
+
+
+  def show
+    # @reviews = Review.find_by(place_id: params[:id])
+    # @review = current_user.reviews.new
+    @place = Place.find(params[:id])
+    render template: 'places/show'
+  end
 
 def edit
   @place = Place.find_by(id: params[:id])

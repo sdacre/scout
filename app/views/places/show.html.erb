@@ -13,6 +13,8 @@
 		Address: <%= @place.address %><br>
 		City: <%= @place.city %><br>
 		Country: <%= @place.country %></p>
+		<%= @place.longitude %>
+		<%= @place.latitude %>
 
 
 
@@ -33,11 +35,14 @@
   			</a>
   			<% end %>
 			</div>
+			<a href="https://www.google.com/maps/dir/#{@place.latitude}%2C#{@place.longitude}/">
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude}%2C#{@place.longitude}&zoom=13&scale=false&size=555x370&maptype=roadmap&format=png&visual_refresh=true" %></a>
 		</div>
 		<div class="col-sm-3">
   	</div>
 	</div>
-</div>
+
+
 
 		<% if current_user %>
 		<p><%=link_to "Home", users_path(current_user)%>
