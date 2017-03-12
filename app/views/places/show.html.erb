@@ -1,36 +1,40 @@
+
+
 <div class="container">
 	<div class ="row">
-	<div class="col-sm-2">
-  </div>
-  <div class="col-sm-8">
+		<div class="col-sm-3">
+  	</div>
+  	<div class="col-sm-6 title text-center">
 		<h1><%= @place.name %></h1>
-		<p>Difficulty: <%= @place.difficulty %>
-		Description: <%= @place.description %>
-		Kind: <%= @place.kind %>
-		Address: <%= @place.address %>
-		City: <%= @place.city %>
+		<p>Difficulty: <%= @place.difficulty %><br>
+
+		Description: <%= @place.description %><br>
+		Kind: <%= @place.kind %><br>
+		Address: <%= @place.address %><br>
+		City: <%= @place.city %><br>
 		Country: <%= @place.country %></p>
 
 
+
+
 		<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
-		  <div class="carousel-inner">
-		  <% @place.image.each do |image| %>
-		    <div class="item">
-		         <%= image_tag image.medium.url if @place.image? %>
-		         <% end %>
-		    </div>
-
-
-		  <!-- Controls -->
-		   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left"></span>
-		   </a>
-		   <a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right"></span>
-		  </a>
+    <!-- Wrapper for slides -->
+  		<div class="carousel-inner">
+  		<% @place.image.each do |image| %>
+   			<div class="item">
+   			<%= image_tag image.medium.url if @place.image? %>
+    		</div>
+  <!-- Controls -->
+   			<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    		<span class="glyphicon glyphicon-chevron-left"></span>
+   			</a>
+   			<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+    		<span class="glyphicon glyphicon-chevron-right"></span>
+  			</a>
+  			<% end %>
+			</div>
 		</div>
-		</div>
-		 <div class="col-sm-1">
+		<div class="col-sm-3">
   	</div>
 	</div>
 </div>

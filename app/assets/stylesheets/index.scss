@@ -24,3 +24,23 @@
 //   background-color: 	#F8F8FF;
 //
 // }
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+
+
+/* Font Variables*/
+$julius-sans-one: 'Julius Sans One', sans-serif; 
+$open-sans: 'Open Sans', sans-serif;
+
+/* Styles*/
+.title {
+  font-family: $julius-sans-one;
+}
+
+.thick {
+    font-weight: bold;
+}
+
+.padding { padding-bottom:1px; display: inline-block;}
