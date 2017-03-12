@@ -46,6 +46,7 @@ gem 'figaro'
 gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'pg_search'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

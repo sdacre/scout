@@ -1,4 +1,5 @@
 
+
 <%= form_for :session, url: session_path do |form| %>
 
   <div class="text-field">
@@ -40,10 +41,10 @@
     </div>
 
     <div class="submit-field">
-      <%= form.submit %>
+      <%= form.submit %><br>
+      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
     </div>
 
   </div>
   <% end %>
 </div>
-

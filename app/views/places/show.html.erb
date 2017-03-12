@@ -49,3 +49,13 @@
 		<%end%>
 
    
+
+<% if current_user %>
+<p><%=link_to "Home", user_path(current_user)%>
+    <%=link_to "Index", places_path%>
+    <%=link_to "Update", edit_place_path(@place) %>
+</p>
+<% else %>
+<%= link_to t(".sign_up"), sign_up_path %>
+<%end%>
+
