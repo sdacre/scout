@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170312111823) do
 
   # These are extensions that must be enabled in order to support this database
@@ -66,6 +67,13 @@ ActiveRecord::Schema.define(version: 20170312111823) do
     t.datetime "updated_at",   null: false
     t.index ["place_id"], name: "index_reviews_on_place_id", using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "search_suggestions", force: :cascade do |t|
+    t.string   "term"
+    t.integer  "popularity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

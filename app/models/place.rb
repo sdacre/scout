@@ -5,17 +5,20 @@ class Place < ApplicationRecord
   has_many :reviews
   # include PgSearch
   #  multisearchable against: [:name, :city, :country, :description]
-#    pg_search_scope :search_places, :against => [
-#   [:name,        'A'],
-#   [:city,        'B'],
-#   [:country,     'C'],
-#   [:description, 'D']
-# ],
-#                   :using => {
-#     tsearch:    {dictionary: 'english'},
-#     trigram:    {threshold:  0.1},
-#     dmetaphone: {}
-#   }
+
+   pg_search_scope :search_places, :against => [
+  [:name,        'A'],
+  [:city,        'B'],
+  [:country,     'C'],
+  [:description, 'D']
+],
+                  :using => {
+    tsearch:    {dictionary: 'english', prefix: true},
+    trigram:    {threshold:  0.3},
+    dmetaphone: {}
+  }
+
+
 
 end
 
