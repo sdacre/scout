@@ -1,9 +1,11 @@
+
 .jumbotron {
+  padding-top: 0px;
   font-family: Brisa Regular;
   background: url("bg1.jpg");
   background-size: 100%;
   width: 100%;
-  height: 700px;
+  height: 550px;
 }
 
 .find-location {
@@ -33,7 +35,7 @@
 
 
 /* Font Variables*/
-$julius-sans-one: 'Julius Sans One', sans-serif; 
+$julius-sans-one: 'Julius Sans One', sans-serif;
 $open-sans: 'Open Sans', sans-serif;
 $questrial: 'Questrial', sans-serif;
 

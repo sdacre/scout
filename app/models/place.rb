@@ -3,7 +3,7 @@ class Place < ApplicationRecord
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
   has_many :reviews
-  # include PgSearch
+  include PgSearch
   #  multisearchable against: [:name, :city, :country, :description]
 
 #    pg_search_scope :search_places, :against => [
