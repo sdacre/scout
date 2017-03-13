@@ -14,13 +14,12 @@ class PlacesController < ApplicationController
   end
 
   def index
-<<<<<<< HEAD
+
   @places = Place.all
 # if params[:query]  respond_to do |format|
 #   format.html
 #   format.json { @places = @places.search_places(params[:query]) if params[:query]}
   @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
-=======
     @places = Place.all
     @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
       if params[:search].present?
@@ -28,7 +27,6 @@ class PlacesController < ApplicationController
       else
       @locations = Place.all
       end
->>>>>>> e4a91cd19af94791f6a91ab6b678a7ebee17ae3b
     render template: 'places/index' # render partial: 'places/index'
   end
 
