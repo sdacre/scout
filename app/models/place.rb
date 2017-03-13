@@ -10,8 +10,8 @@ class Place < ApplicationRecord
   [:description, 'D']
 ],
                   :using => {
-    tsearch:    {dictionary: 'english'},
-    trigram:    {threshold:  0.1},
+    tsearch:    {dictionary: 'english', prefix: true},
+    trigram:    {threshold:  0.3},
     dmetaphone: {}
   }
 
