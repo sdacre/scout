@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#geocoding gem
+gem 'geocoder'
 #photo uploading extension
 gem "mini_magick"
 #photouploading
@@ -30,9 +32,6 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'figaro'
-gem 'omniauth'
-gem 'omniauth-facebook'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
