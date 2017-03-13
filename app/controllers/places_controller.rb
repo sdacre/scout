@@ -15,7 +15,16 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
+    # if params[:query]  respond_to do |format|
+    #   format.html
+    #   format.json { @places = @places.search_places(params[:query]) if params[:query]}
+    @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
     @places = @places.similar_to(params[:query]) if params[:query]
+    if params[:search].present?
+      @locations = Place.near(params[:search], 50, :order => :distance)
+    else
+      @locations = Place.all
+    end
     render template: 'places/index' # render partial: 'places/index'
   end
     
@@ -24,22 +33,13 @@ class PlacesController < ApplicationController
     @place         = Place.find(params[:id])
     @new_review    = @place.reviews.new
     @reviews       = @place.reviews.all
-    @place_reviews = Review.where(place_id: params[:id])
-    # @all_users     = Review.where(user_id: )
-      
-    render template: 'places/show'
-    
-    # @places = @places.search_places(params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
-    # render template: 'places/index' # render partial: 'places/index'
+    @place_reviews = Review.where(place_id: params[:id])      
+    render template: 'places/show'  
   end
-    
-  # def show
-  #   @place = Place.find(params[:id])
-  #   render template: 'places/show'
-  # end
+
 
   def edit
-    @place = Place.find_by(id: params[:id])
+     @place = Place.find_by(id: params[:id])
   end
 
   def update

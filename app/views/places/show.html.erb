@@ -1,26 +1,63 @@
 <h2><div id="mean_rate"><strong><%= @place.name %> </strong></div></h2>
-<div class="carousel-inner">
-  <div class="item active">
-    <% if @place.image.present? %>
-      <%= image_tag @place.image.first, {:class => "img-response"} %>
-  </div>
-    <% @place.image.shift %>
-    <% @place.image.each do |image| %>
-    <div class="item">
-      <%= image_tag image.medium, {:class =>"img-response"} %>
-    <% end %>
-    </div>
-</div>
-    <% end %>
-
-<p><div id="t_diff">Track difficulty: </div></p>
-<p>Description: <strong><%= @place.description %></strong></p>
-<p>Type: <strong><%= @place.kind %></strong></p>
-<p>Address: <strong><%= @place.address %></strong></p>
-<p>City: <strong><%= @place.city %></strong></p>
-<p>Country: <strong><%= @place.country %></strong></p>
 
 <hr>
+
+<div class="container-fluid">
+	<div class ="row">
+		<div class="col-sm-1">
+  	</div>
+  	<div class="col-sm-10 title inline">
+			<h1><%= @place.name %></h1>
+			Difficulty: <%= @place.difficulty %><br>
+			Description: <%= @place.description %><br>
+			Kind: <%= @place.kind %><br>
+			Address: <%= @place.address %><br>
+			City: <%= @place.city %><br>
+			Country: <%= @place.country %></p><br>
+			<%= @place.longitude %>
+			<%= @place.latitude %>
+		</div>
+		<div class="col-sm-1">
+		</div>
+	</div>
+
+<div class ="row">
+		<div class="col-sm-1">
+		</div>
+  	<div class="col-sm-5 title">
+			<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
+		   <!-- Wrapper for slides -->
+	  	  <div class="carousel-inner">
+			  	<% @place.image.each do |image| %>
+			   	<div class="item">
+			   	<%= image_tag image.medium.url if @place.image? %>
+			    </div>
+		  <!-- Controls -->
+			  	<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="	prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			   	</a>
+			   	<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			  	</a>
+	  			<% end %>
+				</div>
+			</div>
+		</div>
+
+
+		<%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
+    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %>
+		<% end %>
+
+		<% if current_user %>
+		<p><%=link_to "Home", users_path(current_user)%>
+		    <%=link_to "Index", places_path%>
+		    <%=link_to "Update", edit_place_path(@place) %>
+		</p>
+		<% else %>
+		<%= link_to t(".sign_up"), sign_up_path %>
+		<%end%>
+</div>
 
 <h4><strong>What others think of this place: </strong></h4>
 <% if @place_reviews.count < 1 %>

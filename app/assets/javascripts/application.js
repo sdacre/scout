@@ -11,8 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
 //= require jquery_ujs
 //= require jquery.raty
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+   $( '.item:first' ).addClass( 'active');
+});

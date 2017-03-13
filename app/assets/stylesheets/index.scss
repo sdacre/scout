@@ -1,9 +1,11 @@
+
 .jumbotron {
+  padding-top: 0px;
   font-family: Brisa Regular;
   background: url("bg1.jpg");
   background-size: 100%;
   width: 100%;
-  height: 700px;
+  height: 550px;
 }
 
 .find-location {
@@ -26,3 +28,25 @@
 //   background-color: 	#F8F8FF;
 //
 // }
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans|Questrial');
+
+
+/* Font Variables*/
+$julius-sans-one: 'Julius Sans One', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
+$questrial: 'Questrial', sans-serif;
+
+/* Styles*/
+.title {
+  font-family: $questrial
+}
+
+
+.thick {
+    font-weight: bold;
+}
+
+.padding { padding-bottom:1px; display: inline-block;}

@@ -1,14 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "index";
+@import "*";
+@import "jquery-ui/core";
+@import "jquery-ui/theme";
+@import "jquery-ui/autocomplete";
+@import "*";
+
+
 
 body {
   font-family: Brisa Regular;
-  
+
 }
 .container1 {
   font-family: Brisa Regular;
-  padding-top: 70px;
   margin-left: 400px;
   margin-right: 400px;
 }
@@ -26,4 +31,8 @@ body {
 
 .thumbnail {
   padding: 20px
+}
+
+.navbar-default {
+  border-style: none;
 }
