@@ -1,4 +1,6 @@
+<h2><div id="mean_rate"><strong><%= @place.name %> </strong></div></h2>
 
+<hr>
 
 <div class="container-fluid">
 	<div class ="row">
@@ -19,8 +21,7 @@
 		</div>
 	</div>
 
-
-	<div class ="row">
+<div class ="row">
 		<div class="col-sm-1">
 		</div>
   	<div class="col-sm-5 title">
@@ -57,3 +58,185 @@
 		<%= link_to t(".sign_up"), sign_up_path %>
 		<%end%>
 </div>
+
+<h4><strong>What others think of this place: </strong></h4>
+<% if @place_reviews.count < 1 %>
+	<h4>No reviews yet. Submit the first review now!</h4>
+<% elsif @place_reviews.count == 1 %>
+	<div>
+	<% @place_reviews.each do |x| %>
+		<div id="u_mean"><strong><%= x.user.username %></strong>: </div><br>
+		<div id="u_gen_<%= x.id %>">Awesomeness: </div>
+		<p><%= x.desc_general %></p>
+		
+		<div id="u_safe_<%= x.id %>">Safetyness: </div>
+		<p><%= x.desc_safe %></p>
+		
+		<div id="u_clean_<%= x.id %>">Cleanliness: </div>
+		<p><%= x.desc_clean %></p>
+		
+		<div id="u_scenery_<%= x.id %>">Scenery: </div>
+		<p><%= x.desc_scenery %></p>
+		<hr>
+	</div>
+<!-- JS for existing reviews(single reviews) -->
+		<script>
+		$('#u_mean_<%= x.id %>').raty({
+		  readOnly:   true,
+		  starHalf:		'star-half.png',
+			start:   		<%= avg_user_rating(x) %>,
+		});
+
+		$('#u_gen_<%= x.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= x.rate_general %>,
+		});
+
+		$('#u_safe_<%= x.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= x.rate_safe %>,
+		});
+
+		$('#u_clean_<%= x.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= x.rate_clean %>,
+		});
+
+		$('#u_scenery_<%= x.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= x.rate_scenery %>,
+		});
+		</script>
+	<% end %>
+
+<% elsif @place_reviews.count > 1 %>
+<div>
+	<% @place_reviews.all.order(created_at: :desc).each do |y| %>
+	<div id="u_mean_<%= y.id %>"><strong><%= y.user.username %></strong>: </div><br>
+		<div id="u_gen_<%= y.id %>">Awesomeness: </div>
+		<p><%= y.desc_general %></p><br>
+		<div id="u_safe_<%= y.id %>">Safetyness: </div>
+		<p><%= y.desc_safe %></p><br>
+		<div id="u_clean_<%= y.id %>">Cleanliness: </div>
+		<p><%= y.desc_clean %></p><br>
+		<div id="u_scenery_<%= y.id %>">Scenery: </div>
+		<p><%= y.desc_scenery %></p><br>
+		<hr>
+</div>
+		
+ <!-- JS for eyisting reviews(multiple reviews) -->
+		<script>
+		$('#u_mean_<%= y.id %>').raty({
+		  readOnly:   true,
+		  starHalf:		'star-half.png',
+			start:   		<%= avg_user_rating(y) %>,
+		});
+
+		$('#u_gen_<%= y.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= y.rate_general %>,
+		});
+
+		$('#u_safe_<%= y.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= y.rate_safe %>,
+		});
+
+		$('#u_clean_<%= y.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= y.rate_clean %>,
+		});
+
+		$('#u_scenery_<%= y.id %>').raty({
+		  readOnly:   true,
+			start:   		<%= y.rate_scenery %>,
+		});
+		</script>
+
+	<% end %>	
+<% end %>
+
+<!-- reviews#new / reviews#create -->
+Ran here before? Write your review for this place!
+<%= form_for [@place, @new_review] do |f| %>
+<span>
+    <div id="general" style="display: inline;">Awesomeness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_general, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+    <div id="safe" style="display: inline;">Safetyness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_safe, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+    <div id="clean" style="display: inline;">Cleanliness:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_clean, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+    <div id="scenery" style="display: inline;">Scenery:<br></div>
+</span>
+<span>
+    <%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
+</span><br>
+<br>
+	<% if current_user == nil %>
+		<%= link_to "Log in to submit your rating!", sign_in_path %>
+	<% else %>
+		<%= f.submit value: "Submit my rating!" %>
+	<% end %>
+<% end %>
+
+<% if current_user %>
+<p><%=link_to "Home", users_path(current_user)%>
+  <%=link_to "Index", places_path%>
+  <%=link_to "Update", edit_place_path(@place) %>
+</p>
+<% else %>
+  <%= link_to t(".sign_up"), sign_up_path %>
+<% end %>
+
+<!-- JS for star ratings -->
+<script>
+$('#general').raty({
+	start:     2,
+  scoreName: 'review[rate_general]', 
+});
+
+$('#safe').raty({
+  start:     2,
+  scoreName: 'review[rate_safe]', 
+});
+
+$('#clean').raty({
+  start:     2,
+  scoreName: 'review[rate_clean]', 
+});
+
+$('#scenery').raty({
+  start:     2,
+  scoreName: 'review[rate_scenery]', 
+});
+
+$('#t_diff').raty({
+  readOnly:  true, 
+  number:    3,
+  start:   	 <%= @place.difficulty %>,
+});
+
+$('#mean_rate').raty({
+  half:       true,
+  start:   		<%= avg_place_rating(@place) %>,
+  readOnly:   true,
+  starHalf:   'star-half-big.png',
+  starOff:    'star-off-big.png',
+  starOn:     'star-on-big.png'
+});
+</script>
