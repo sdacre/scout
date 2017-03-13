@@ -14,19 +14,31 @@ class PlacesController < ApplicationController
   end
 
   def index
+<<<<<<< HEAD
   @places = Place.all
 # if params[:query]  respond_to do |format|
 #   format.html
 #   format.json { @places = @places.search_places(params[:query]) if params[:query]}
   @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
+=======
+    @places = Place.all
+    @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
+      if params[:search].present?
+      @locations = Place.near(params[:search], 50, :order => :distance)
+      else
+      @locations = Place.all
+      end
+>>>>>>> e4a91cd19af94791f6a91ab6b678a7ebee17ae3b
     render template: 'places/index' # render partial: 'places/index'
   end
-    def show
-      # @reviews = Review.find_by(place_id: params[:id])
-      # @review = current_user.reviews.new
-      @place = Place.find(params[:id])
-      render template: 'places/show'
-end
+
+
+  def show
+    # @reviews = Review.find_by(place_id: params[:id])
+    # @review = current_user.reviews.new
+    @place = Place.find(params[:id])
+    render template: 'places/show'
+  end
 
 def edit
   @place = Place.find_by(id: params[:id])

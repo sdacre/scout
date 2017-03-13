@@ -1,8 +1,11 @@
 class Place < ApplicationRecord
   mount_uploaders :image, ImageUploader
+	geocoded_by :address
+	after_validation :geocode, :if => :address_changed?
   has_many :reviews
-  include PgSearch
+  # include PgSearch
   #  multisearchable against: [:name, :city, :country, :description]
+<<<<<<< HEAD
    pg_search_scope :search_places, :against => [
   [:name,        'A'],
   [:city,        'B'],
@@ -14,6 +17,19 @@ class Place < ApplicationRecord
     trigram:    {threshold:  0.3},
     dmetaphone: {}
   }
+=======
+#    pg_search_scope :search_places, :against => [
+#   [:name,        'A'],
+#   [:city,        'B'],
+#   [:country,     'C'],
+#   [:description, 'D']
+# ],
+#                   :using => {
+#     tsearch:    {dictionary: 'english'},
+#     trigram:    {threshold:  0.1},
+#     dmetaphone: {}
+#   }
+>>>>>>> e4a91cd19af94791f6a91ab6b678a7ebee17ae3b
 
 end
 
