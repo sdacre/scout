@@ -18,9 +18,6 @@
 //= require turbolinks
 //= require_tree .
 
-
 $(document).on('turbolinks:load', function() {
-		     $('.carousel').carousel();
-		     $( '.item:first' ).addClass( 'active');
+   $( '.item:first' ).addClass( 'active');
 });
-		  

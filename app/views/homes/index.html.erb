@@ -97,8 +97,13 @@
         <h1 class="text-center font">
         <% @places.each do |place| %>
         <%= link_to place_path(place) do%>
+
+        <p class="padding"><%=image_tag place.image[0].thumb.url if place.image.any? %></p>
+        <% end %> 
+
         <p class="padding"><%=image_tag place.image[0].thumb.url %></p>
         <% end %>
+
         <% end %>
         </div>
       <div class="col-sm-1">
