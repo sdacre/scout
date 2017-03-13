@@ -20,6 +20,7 @@ class PlacesController < ApplicationController
   end
     
   def show
+    # byebug
     @place         = Place.find(params[:id])
     @new_review    = @place.reviews.new
     @reviews       = @place.reviews.all
