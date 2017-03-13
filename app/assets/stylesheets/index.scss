@@ -29,17 +29,19 @@
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans|Questrial');
 
 
 /* Font Variables*/
 $julius-sans-one: 'Julius Sans One', sans-serif; 
 $open-sans: 'Open Sans', sans-serif;
+$questrial: 'Questrial', sans-serif;
 
 /* Styles*/
 .title {
-  font-family: $julius-sans-one;
+  font-family: $questrial
 }
+
 
 .thick {
     font-weight: bold;

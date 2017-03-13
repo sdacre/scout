@@ -1,44 +1,49 @@
 
 
-<div class="container">
+<div class="container-fluid">
 	<div class ="row">
-		<div class="col-sm-3">
+		<div class="col-sm-1">
   	</div>
-  	<div class="col-sm-6 title text-center">
-		<h1><%= @place.name %></h1>
-		<p>Difficulty: <%= @place.difficulty %><br>
+  	<div class="col-sm-10 title inline">
+			<h1><%= @place.name %></h1>
+			Difficulty: <%= @place.difficulty %><br>
+			Description: <%= @place.description %><br>
+			Kind: <%= @place.kind %><br>
+			Address: <%= @place.address %><br>
+			City: <%= @place.city %><br>
+			Country: <%= @place.country %></p><br>
+			<%= @place.longitude %>
+			<%= @place.latitude %>
+		</div>
+		<div class="col-sm-1">
+		</div>
+	</div>
 
-		Description: <%= @place.description %><br>
-		Kind: <%= @place.kind %><br>
-		Address: <%= @place.address %><br>
-		City: <%= @place.city %><br>
-		Country: <%= @place.country %></p>
 
-
-
-
-		<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
-    <!-- Wrapper for slides -->
-  		<div class="carousel-inner">
-  		<% @place.image.each do |image| %>
-   			<div class="item">
-   			<%= image_tag image.medium.url if @place.image? %>
-    		</div>
-  <!-- Controls -->
-   			<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    		<span class="glyphicon glyphicon-chevron-left"></span>
-   			</a>
-   			<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
-    		<span class="glyphicon glyphicon-chevron-right"></span>
-  			</a>
-  			<% end %>
+	<div class ="row">
+		<div class="col-sm-1">
+		</div>
+  	<div class="col-sm-5 title">
+			<div id = "carouselExampleIndicators" class= "carousel slide" data-ride= "carousel">
+		   <!-- Wrapper for slides -->
+	  	  <div class="carousel-inner">
+			  	<% @place.image.each do |image| %>
+			   	<div class="item">
+			   	<%= image_tag image.medium.url if @place.image? %>
+			    </div>
+		  <!-- Controls -->
+			  	<a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="	prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			   	</a>
+			   	<a class="right carousel-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			  	</a>
+	  			<% end %>
+				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
-  	</div>
-	</div>
-</div>
-
+			<a href="https://www.google.com/maps/dir/#{@place.latitude}#{@place.longitude}/">
+			<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %></a>
 		<% if current_user %>
 		<p><%=link_to "Home", users_path(current_user)%>
 		    <%=link_to "Index", places_path%>
@@ -46,16 +51,6 @@
 		</p>
 		<% else %>
 		<%= link_to t(".sign_up"), sign_up_path %>
-		<%end%>
-
-   
-
-<% if current_user %>
-<p><%=link_to "Home", user_path(current_user)%>
-    <%=link_to "Index", places_path%>
-    <%=link_to "Update", edit_place_path(@place) %>
-</p>
-<% else %>
-<%= link_to t(".sign_up"), sign_up_path %>
-<%end%>
+		<%end%>	
+</div>
 
