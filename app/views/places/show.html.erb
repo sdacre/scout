@@ -42,8 +42,12 @@
 				</div>
 			</div>
 		</div>
-			<a href="https://www.google.com/maps/dir/#{@place.latitude}#{@place.longitude}/">
-			<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %></a>
+
+		<%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
+    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %>
+		<% end %>
+
+
 		<% if current_user %>
 		<p><%=link_to "Home", users_path(current_user)%>
 		    <%=link_to "Index", places_path%>
