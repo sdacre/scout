@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :authentications, :dependent => :destroy
 
 def self.create_with_auth_and_hash(authentication, auth_hash)
-  byebug
       user = User.create!(username: auth_hash["info"]["name"], email: auth_hash["extra"]["raw_info"]["email"])
       user.authentications << (authentication)
       return user
@@ -16,7 +15,7 @@ end
   end
 
   def password_optional?
-    true if fb_token
+    true
   end
 
 end
