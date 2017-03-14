@@ -56,57 +56,12 @@
         </div>
     </div>
 
+<h2>Pinned Places:</h2>
 
 <div class="container">
- <div class="row">
-
-   <div class="col-md-12">
-   <h2>Name:</h2>
-     <p><%= @user.first_name %>
-     <%= @user.last_name %></p><br>
-     <%= form_for @user do |profile| %>
-     <%= image_tag @user.profile.thumb.url if @user.profile? %><br>
-     <h4><%= profile.label :edit_profile_picture %></h4>
-     <%= profile.file_field :profile %><br>
-     <%= profile.button 'Upload', type: 'submit' %>
-     <% end %>
-   </div>
- </div>
-</div>
-
-
-   
-
-
-    <style>
-      #marker {
-      width: 20px;
-      height: 20px;
-      border-radius: 10px;
-      }
-      #city {
-        text-decoration: none;
-        color: white;
-        font-size: 11pt;
-        font-weight: bold;
-        text-shadow: black 0.1em 0.1em 0.2em;
-      }
-      .popover-content {
-        min-width: 180px;
-      }
-      #map {
-        position: relative;
-      }
-    </style>
-
-
-<div class="container">
-
   <div class="row">
-
     <div class="col-md-1">
     </div>
-
     <div class="col-md-10">
       <div id="map" class="map">
       </div>
@@ -154,53 +109,32 @@
  </div>
 
 </div>
-        <% @u_reviews.all.each do |pinned| %>
 
+<h2>Pinned places:</h2>
+<% @u_reviews.all.each do |pinned| %>
+  <p><%= pinned.place.name %></p>
+  <p><%= pinned.place.longitude %></p>
+  <p><%= pinned.place.latitude %></p><br>
+<%end%>
+ 
 
-    <script>
-      var layer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-      });
-
-      var map = new ol.Map({
-        layers: [layer],
-        target: 'map',
-        view: new ol.View({
-          center: [0,0],
-          zoom: 2
-        })
-      });
-
-
-      var pos = ol.proj.fromLonLat([<%= pinned.place.longitude %>, <%= pinned.place.latitude %>]);
-
-      // Vienna marker
-      var marker = new ol.Overlay({
-        position: pos,
-        positioning: 'center-center',
-        element: document.getElementById('marker'),
-        stopEvent: false
-      });
-      map.addOverlay(marker);
-
-      // City label
-      var city = new ol.Overlay({
-        position: pos,
-        element: document.getElementById('city')
-      });
-      map.addOverlay(city);
-
-    </script>
-
-
-
-        <h2>Pinned places:</h2>
-        <% @u_reviews.all.each do |pinned| %>
-          <p><%= pinned.place.name %></p>
-          <p><%= pinned.place.longitude %></p>
-          <p><%= pinned.place.latitude %></p><br>
-        <%end%>
-
-
-</style>    
-
+<style>
+  #marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  }
+  #city {
+    text-decoration: none;
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
+  .popover-content {
+    min-width: 180px;
+  }
+  #map {
+    position: relative;
+  }
+</style>
