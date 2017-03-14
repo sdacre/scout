@@ -1,8 +1,55 @@
-<<<<<<< HEAD
+
+<div class="container2">
+
+    <div class="row">
+        <div class="col-md-5">
+            <%= form_for @user do |profile| %>
+            <%= image_tag @user.profile.thumb.url if @user.profile? %><br>
+            <h4><%= profile.label :edit_profile_picture %></h4>
+            <%= profile.file_field :profile %><br>
+            <%= profile.button 'Upload', type: 'submit' %>
+            <% end %>
+        </div>
+
+        <div class="col-md-5">
+            <h2>Name:</h2>
+            <p><%= @user.first_name %>
+                <%= @user.last_name %></p><br>
+            <h2>Email:</h2>
+            <p><%= @user.email %></p><br>
+            <% if @client.nil? %>
+            <%= link_to "Get stats from Strava", "/auth/strava" %><br>
+        <% else %>
+        <div>
+          <h2>Latest runs from Strava</h2>
+              <p>Distance   <%= (@runs[0]["distance"]/1000).round(2) %> km</p><br>
+              <p>Time       <%= (@runs[0]["moving_time"].to_f/60).round(2) %> minutes </p><br>
+              <p>Average Speed  <%= (@runs[0]["average_speed"]).round(1) %> mph </p><br/>
+              <p>Max Speed      <%= (@runs[0]["max_speed"]).round(1) %> mph </p><br/>
+              <p>Date            <%=   Date.strptime((@runs[0]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>   </p><br/>
 
 
-=======
->>>>>>> 5559c86e16972c4c430fb45ae416ad6e004cfb83
+            <% if @runs[1] %>
+            <%= @runs[1]["distance"]/1000 %>
+            <%= @runs[1]["moving_time"].to_d %>
+            <%= @runs[1]["average_speed"] %>
+            <%= @runs[1]["max_speed"] %>
+            <%= @runs[1]["total_elevation_gain"] %>
+            <%= @runs[1]["start_date"] %>
+          <% end %>
+            <% if @runs[2] %>
+            <%= @runs[2]["distance"]/1000 %>
+            <%= @runs[2]["moving_time"].to_d %>
+            <%= @runs[2]["average_speed"] %>
+            <%= @runs[2]["max_speed"] %>
+            <%= @runs[2]["total_elevation_gain"] %>
+            <%= @runs[2]["start_date"] %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+    </div>
+
 <div class="container">
  <div class="row">
 
@@ -20,7 +67,6 @@
  </div>
 </div>
 
-<<<<<<< HEAD
    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
@@ -50,7 +96,6 @@
         position: relative;
       }
     </style>
-=======
 
    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
@@ -80,7 +125,6 @@
        position: relative;
      }
    </style>
->>>>>>> 5559c86e16972c4c430fb45ae416ad6e004cfb83
 
 
 <div class="container">
@@ -102,7 +146,6 @@
 </div>
         <% @u_reviews.all.each do |pinned| %>
 
-<<<<<<< HEAD
     <script>
       var layer = new ol.layer.Tile({
         source: new ol.source.OSM()
@@ -179,7 +222,6 @@
           <p><%= pinned.place.name %></p>
           <p><%= pinned.place.longitude %></p>
           <p><%= pinned.place.latitude %></p><br>
->>>>>>> 5559c86e16972c4c430fb45ae416ad6e004cfb83
         <%end%>
 
 
@@ -187,4 +229,3 @@
 
 
 
-    
