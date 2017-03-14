@@ -105,7 +105,7 @@
     </div>
     <div class="col-md-10">
       <div id="map" class="map">
-        <div id="popup">  
+        <div id="popup">
         </div>
       </div>
       <div id="marker" title="Marker">
@@ -115,7 +115,7 @@
     <div class="col-md-1">
     </div>
   </div>
-      
+
       <script type="text/javascript">
         var layer = new ol.layer.Tile({
           source: new ol.source.OSM()
@@ -161,12 +161,10 @@
 
 
         <h2>Pinned places:</h2>
+        <% if @u_reviews %>
         <% @u_reviews.all.each do |pinned| %>
           <p><%= pinned.place.name %></p>
           <p><%= pinned.place.longitude %></p>
           <p><%= pinned.place.latitude %></p><br>
         <%end%>
-
-
-
-
+        <%end%>

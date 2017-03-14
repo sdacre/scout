@@ -3,12 +3,12 @@ class UsersController < Clearance::UsersController
 
 
 	def show
-		@auth = current_user.authentications.find_by(provider: "strava")
+		@auth = current_user.authentications.find_by(provider: "strava") if current_user
 		@client = Strava::Api::V3::Client.new(:access_token => @auth.token) if @auth
-		@runs = @client.list_athlete_activities
+		@runs = @client.list_athlete_activities if @client
 		@user = User.find(params[:id])
-		@u_reviews = Review.where(user_id: params[:id])
-    render template: 'users/show'
+		@u_reveiws = Review.where(user_id: params[:id])
+		render template: 'users/show'
 	end
 
 	def edit

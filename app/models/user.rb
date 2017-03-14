@@ -7,10 +7,6 @@ class User < ApplicationRecord
   has_many :authentications, :dependent => :destroy
   has_many :reviews
 
-    mount_uploader :profile, ProfileUploader
-    include Clearance::User
-    has_many :authentications, dependent: :destroy
-
     def self.create_with_auth_and_hash(authentication, auth_hash)
         user = User.create!(username: auth_hash['info']['name'], email: auth_hash['extra']['raw_info']['email'])
         user.authentications << authentication
