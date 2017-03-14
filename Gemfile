@@ -5,7 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#figaro
+
+
 #secret keys gem
+
 gem 'figaro'
 #geocoding gem
 gem 'geocoder'
