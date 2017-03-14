@@ -27,14 +27,15 @@
             <% if @client.nil? %>
             <%= link_to "Get stats from Strava", "/auth/strava" %><br>
         <% else %>
-        <div>
+        <div> 
+        <%if @runs[0] %>
           <h2>Latest runs from Strava</h2>
               <p>Distance   <%= (@runs[0]["distance"]/1000).round(2) %> km</p><br>
               <p>Time       <%= (@runs[0]["moving_time"].to_f/60).round(2) %> minutes </p><br>
               <p>Average Speed  <%= (@runs[0]["average_speed"]).round(1) %> mph </p><br/>
               <p>Max Speed      <%= (@runs[0]["max_speed"]).round(1) %> mph </p><br/>
               <p>Date            <%=   Date.strptime((@runs[0]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>   </p><br/>
-
+            <% end %>
 
             <% if @runs[1] %>
             <%= @runs[1]["distance"]/1000 %>
