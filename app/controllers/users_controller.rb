@@ -1,8 +1,8 @@
 class UsersController < Clearance::UsersController
 
 	def show
-		@user = User.find(params[:id])
-		@place = Place.all
+		@user = User.find_by(id: params[:id])
+		@u_reviews = Review.where(user_id: params[:id])
 	end
 
 	def edit
