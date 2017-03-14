@@ -14,7 +14,6 @@ class SessionsController < Clearance::SessionsController
            @notice = 'Sorry! You must have a Strava Account to use this feature.'
          else
         @next = user_path(current_user)
-        @notice = 'Sorry! You must have a Strava Account to use this feature.'
      end
      redirect_to @next, notice: @notice
    end
