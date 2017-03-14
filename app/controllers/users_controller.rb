@@ -7,7 +7,8 @@ class UsersController < Clearance::UsersController
 		@client = Strava::Api::V3::Client.new(:access_token => @auth.token) if @auth
 		@runs = @client.list_athlete_activities
 		@user = User.find(params[:id])
-		render template: 'users/show'
+		@u_reviews = Review.where(user_id: params[:id])
+    render template: 'users/show'
 	end
 
 	def edit

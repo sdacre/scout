@@ -1,5 +1,11 @@
 class User < ApplicationRecord
+
     require 'strava/api/v3'
+
+  mount_uploader :profile, ProfileUploader
+  include Clearance::User
+  has_many :authentications, :dependent => :destroy
+  has_many :reviews
 
     mount_uploader :profile, ProfileUploader
     include Clearance::User
