@@ -15,7 +15,7 @@
  </div>
 </div>
 
-  <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
+
    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
    <script src="https://openlayers.org/en/v4.0.1/build/ol.js"></script>
@@ -97,14 +97,14 @@
      map.addOverlay(city);
 
    </script>
+
         <h2>Pinned places:</h2>
         <% @u_reviews.all.each do |pinned| %>
           <p><%= pinned.place.name %></p>
           <p><%= pinned.place.longitude %></p>
           <p><%= pinned.place.latitude %></p><br>
         <%end%>
-      </div>
-</div>
+
 
 
 
