@@ -1,4 +1,5 @@
 
+
 <div class="container">
   <div class="row">
 
@@ -47,29 +48,6 @@
     </style>
 
 
-    <div id="map" class="map"><div id="popup"></div></div>
-    <script>
-      var iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point([0,0]),
-        name: 'hi',
-      });      
-
-
-      var iconStyle = new ol.style.Style({
-        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [0.5, 46],
-          anchorXUnits: 'fraction',
-          anchorYUnits: 'pixels',
-          src: 'https://openlayers.org/en/v4.0.1/examples/data/icon.png'
-        }))
-      });
-
-      iconFeature.setStyle(iconStyle);
-
-      var vectorSource = new ol.source.Vector({
-        features: [iconFeature]
-      });
-
 <div class="container">
   <div class="row">
     <div class="col-md-1">
@@ -87,6 +65,7 @@
     </div>
   </div>
 </div>
+        <% @u_reviews.all.each do |pinned| %>
 
     <script>
       var layer = new ol.layer.Tile({
@@ -102,7 +81,10 @@
         })
       });
 
-      var pos = ol.proj.fromLonLat([16.3725, 48.208889]);
+        
+        
+
+      var pos = ol.proj.fromLonLat([<%= pinned.place.longitude %>, <%= pinned.place.latitude %>]);
 
       // Vienna marker
       var marker = new ol.Overlay({
@@ -120,13 +102,10 @@
       });
       map.addOverlay(city);
 
-
-        <h2>Pinned places:</h2>
-        <% @u_reviews.all.each do |pinned| %>
-          <p><%= pinned.place.name %></p>
-          <p><%= pinned.place.longitude %></p>
-          <p><%= pinned.place.latitude %></p><br>
+    </script>
         <%end%>
+
+
 
 
 
