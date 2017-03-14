@@ -1,7 +1,13 @@
 class UsersController < Clearance::UsersController
+	require 'strava/api/v3'
+
 
 	def show
+		@auth = current_user.authentications.find_by(provider: "strava")
+		@client = Strava::Api::V3::Client.new(:access_token => @auth.token) if @auth
+		@runs = @client.list_athlete_activities
 		@user = User.find(params[:id])
+		render template: 'users/show'
 	end
 
 	def edit
