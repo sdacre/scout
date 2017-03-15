@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
 		@client = Strava::Api::V3::Client.new(:access_token => @auth.token) if @auth
 		@runs = @client.list_athlete_activities if @client
 		@user = User.find(params[:id])
-		@u_reveiws = Review.where(user_id: params[:id])
+		@u_reviews = Review.where(user_id: params[:id])
 		render template: 'users/show'
 	end
 
@@ -29,6 +29,13 @@ class UsersController < Clearance::UsersController
 
 	end
 
+	def index
+		u_arr = []
+		@users = User.all.each do |u|
+			u_arr << u.reviews.count
+		end
+		u_arr.order(:desc)
+	end 
 
 	def create
 		@user = User.new(user_params)

@@ -8,62 +8,66 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-3">
+            <h2><%= @user.first_name %> 
+                <%= @user.last_name %></h2><br>
             <%= form_for @user do |profile| %>
-            <%= image_tag @user.profile.thumb.url if @user.profile? %><br>
+            <p class ="profile"><%= image_tag @user.profile.thumb.url if @user.profile? %></p><br>
             <h4><%= profile.label :edit_profile_picture %></h4>
             <%= profile.file_field :profile %><br>
             <%= profile.button 'Upload', type: 'submit' %>
             <% end %>
-        </div>
-        <%byebug%>
-
-        <div class="col-md-5">
-            <h2>Name:</h2>
-            <p><%= @user.first_name %>
-                <%= @user.last_name %></p><br>
-            <h2>Email:</h2>
-            <p><%= @user.email %></p><br>
+            <hr></hr>
+          
             <% if @client.nil? %>
             <%= link_to "Get stats from Strava", "/auth/strava" %><br>
-        <div>
+
+
+
             <% else %>
-              <h2>Latest runs from Strava</h2>
-              <p>Distance   <%= (@runs[0]["distance"]/1000).round(2) %> km</p><br>
-              <p>Time       <%= (@runs[0]["moving_time"].to_f/60).round(2) %> minutes </p><br>
-              <p>Average Speed  <%= (@runs[0]["average_speed"]).round(1) %> mph </p><br/>
-              <p>Max Speed      <%= (@runs[0]["max_speed"]).round(1) %> mph </p><br/>
-              <p>Date            <%=   Date.strptime((@runs[0]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>   </p><br/>
-
+              <h2 class = "bgwell text-center">Latest runs from <%= link_to "https://www.strava.com/dashboard" do %>
+   <%= image_tag "strava.png" %>
+<% end %></h2>
+              <h5 class = "text-center">
+              <p class ="bgwell"><b>Date</b>            <%=   Date.strptime((@runs[0]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %></p>   
+              <p><b>Distance</b>  <%= (@runs[0]["distance"]/1000).round(2) %> km</p>
+              <p><b>Time</b>       <%= (@runs[0]["moving_time"].to_f/60).round(2) %></p>
+              <p><b>Pace</b>       <%= ((@runs[0]["moving_time"].to_f/60)/(@runs[0]["distance"]/1000)).round(2) %> min/km</p>
+              <p><b>Average Speed</b>  <%= (@runs[0]["average_speed"]).round(1) %> mph</p>
+              <p><b>Max Speed</b>     <%= (@runs[0]["max_speed"]).round(1)%> mph</p>
+              <br/>
+              <hr></hr>
                 <% if @runs[1] %>
-                  <%= @runs[1]["distance"]/1000 %>
-                  <%= @runs[1]["moving_time"].to_d %>
-                  <%= @runs[1]["average_speed"] %>
-                  <%= @runs[1]["max_speed"] %>
-                  <%= @runs[1]["total_elevation_gain"] %>
-                  <%= @runs[1]["start_date"] %>
+              <p class ="bgwell"><b>Date</b>           <%=   Date.strptime((@runs[1]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>
+              <p><b>Distance</b>   <%= (@runs[1]["distance"]/1000).round(2) %> km</p>
+              <p><b>Time</p></b>      <%= (@runs[1]["moving_time"].to_f/60).round(2) %> minutes </p>
+              <p><b>Pace</b>       <%= ((@runs[1]["moving_time"].to_f/60)/(@runs[0]["distance"]/1000)).round(2) %> min/km</p>
+              <p><b>Average Speed</b>  <%= (@runs[1]["average_speed"]).round(1) %> mph </p>
+              <p><b>Max Speed</b>      <%= (@runs[1]["max_speed"]).round(1) %> mph </p><br>
                 <% end %>
+                 <hr></hr>
                 <% if @runs[2] %>
-                  <%= @runs[2]["distance"]/1000 %>
-                  <%= @runs[2]["moving_time"].to_d %>
-                  <%= @runs[2]["average_speed"] %>
-                  <%= @runs[2]["max_speed"] %>
-                  <%= @runs[2]["total_elevation_gain"] %>
-                  <%= @runs[2]["start_date"] %>
-                <% end %>
-            <% end %>
+              <p class ="bgwell"><b>Date</b>           <%=   Date.strptime((@runs[2]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %> 
+              <p><b>Distance</b>  <%= (@runs[2]["distance"]/1000).round(2) %> km</p>
+              <p><b>Time</b>       <%= (@runs[2]["moving_time"].to_f/60).round(2) %> minutes </p>
+              <p><b>Pace</b>      <%= ((@runs[2]["moving_time"].to_f/60)/(@runs[0]["distance"]/1000)).round(2) %> min/km</p>
+              <p><b>Average Speed</b>  <%= (@runs[2]["average_speed"]).round(1) %> mph </p>
+              <p><b>Max Speed</b>      <%= (@runs[2]["max_speed"]).round(1) %> mph </p><br/>
+              <% end %>
+              <% end %>
+              </h5>
         </div>
-    </div>
-</div>
 
-<h2>Pinned Places:</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-10">
+
+
+
+    <div class="col-md-9">
+    <h2 class="text-center">"WHO RUN THE WORLD?"</h2>
       <div id="map" class="map">
       </div>
+
+
+
       <script type="text/javascript">
         var layer = new ol.layer.Tile({
           source: new ol.source.OSM()
@@ -79,8 +83,9 @@
         });
       </script>
 
+      <% if @u_reviews != nil %>
       <div style="display: none;">
-        <% @u_reviews.all.each do |pinned| if @u_revews%>
+        <% @u_reviews.each do |pinned| %>
             <div id="marker_<%= pinned.id %>" title="pin_<%= pinned.place.id %>">
             <i class="material-icons" style="color: red;">location_on</i>
       </div>
@@ -98,54 +103,32 @@
       });
       map.addOverlay(marker);
 
+      map.on('click', function() {
+      map.getView().setZoom(map.getView().getZoom()+1);    
+      });
+
+
     </script>
         <% end %>
       </div>
-    </div>
-
-    <div class="col-md-1">
-    </div>
-  </div>
+    <% end %>
 </div>
 
-<h2>Scouted:</h2>
-<tr>
-<thead>
-  <th>Location: </th>
-  <th>Longitude: </th>
-  <th>Latitude: </th>
-  <th>Difficulty: </th>
-</thead>
-</tr>
-<% @u_reviews.all.each do |pinned| if @u_reviews %>
-<tr>
-<tbody>
-  <td><%= link_to pinned.place.name, place_path(pinned.place) %></td>
-  <td><%= pinned.place.longitude %></td>
-  <td><%= pinned.place.latitude %></td>
-  <td><%= pinned.place.difficulty %></td>
-</tbody>
-</tr>
+
+<h2 class="text-center"><%= @user.first_name %> does. </h2>
+
+<hr></hr>
+
+<!--run anywhere yet? code for users with no reviews does not work -->
+
+
+<h2> Places you've run: </h2>
+<% @u_reviews.all.each do |pinned| %>
+ <h2><i class="material-icons" style="color: red;">location_on</i><%= link_to pinned.place.name, place_path(pinned.place) %><hr></hr></h2>
+</r>
 <%end%>
+</div>
+    </div>
 
+    <%= link_to "All runners", users_path %>
 
-<style>
-  #marker {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  }
-  #city {
-    text-decoration: none;
-    color: white;
-    font-size: 11pt;
-    font-weight: bold;
-    text-shadow: black 0.1em 0.1em 0.2em;
-  }
-  .popover-content {
-    min-width: 180px;
-  }
-  #map {
-    position: relative;
-  }
-</style>
