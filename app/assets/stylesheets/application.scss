@@ -1,6 +1,14 @@
+/*
+*= require material_icons
+*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "*";
+@import "jquery-ui/core";
+@import "jquery-ui/theme";
+@import "jquery-ui/autocomplete";
+
 
 
 body {
@@ -23,6 +31,7 @@ body {
   font-family: Brisa Regular;
   width: 100%
 }
+
 
 .thumbnail {
   padding: 20px

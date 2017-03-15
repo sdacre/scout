@@ -3,9 +3,12 @@
   padding-top: 0px;
   font-family: Brisa Regular;
   background: url("bg1.jpg");
-  background-size: 100%;
-  width: 100%;
-  height: 550px;
+  width: auto;
+  height: 650px;
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover;
+
 }
 
 .find-location {

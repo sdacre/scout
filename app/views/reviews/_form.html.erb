@@ -1,0 +1,51 @@
+<%= form_for @review do |f| %>
+<span>
+	<div id="general" style="display: inline;">Awesomeness:<br></div>
+</span>
+<span>
+	<%= f.text_field :desc_general, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+	<div id="safe" style="display: inline;">Safetyness:<br></div>
+</span>
+<span>
+	<%= f.text_field :desc_safe, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+	<div id="clean" style="display: inline;">Cleanliness:<br></div>
+</span>
+<span>
+	<%= f.text_field :desc_clean, placeholder: "Elaborate your rating here" %>
+</span><br>
+
+<span>
+	<div id="scenery" style="display: inline;">Scenery:<br></div>
+</span>
+<span>
+	<%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
+</span><br>
+<br>
+<%= f.submit "Rate this place!" %>
+<% end %>
+
+
+<script>
+$('#general').raty({
+	scoreName : 'review[rate_general]', 
+});
+
+$('#safe').raty({
+	scoreName : 'review[rate_safe]', 
+});
+
+$('#clean').raty({
+	scoreName : 'review[rate_safe]', 
+});
+
+$('#scenery').raty({
+	scoreName : 'review[rate_safe]', 
+});
+
+</script>
