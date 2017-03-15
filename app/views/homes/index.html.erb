@@ -97,7 +97,7 @@
         <h1 class="text-center font">
         <% @places.each do |place| %>
         <%= link_to place_path(place) do%>
-        <p class="padding"><%=image_tag place.image[0].thumb.url %></p>
+        <p class="padding"><%= Place %></p>
         <% end %>
         <% end %>
         </div>
