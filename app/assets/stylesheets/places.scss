@@ -2,8 +2,8 @@ body {
   background-color : #eee ;
 }
 .reviews {
-  width : 600px; 
-  height : 150px;
+  width : 800px; 
+  height : 250px;
   overflow : hidden ;
   background-color : #fff ;
   border-radius : 5px;
@@ -19,7 +19,8 @@ body {
 .PanelAct {
   left : 0 ;
 }
-.panel dfp { 
+
+#zzz { 
   width : 100px;
   height : 100px; 
   text-align : center ;
@@ -48,7 +49,7 @@ png images background
   margin : 25px 0 10px 0;
   font-size : 14px ; 
   color : #aaa ;
-  line-height : 5px;
+  line-height : 1.2em
 }
 .panel h7 { 
   float : left ; 
