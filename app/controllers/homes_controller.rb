@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 
   def index
-     @places = Place.all
+     @cities = City.all
   end
 
 end
