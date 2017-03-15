@@ -1,9 +1,8 @@
 class Place < ApplicationRecord
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   mount_uploaders :image, ImageUploader
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
-  has_many :reviews
   include PgSearch
   #  multisearchable against: [:name, :city, :country, :description]
 

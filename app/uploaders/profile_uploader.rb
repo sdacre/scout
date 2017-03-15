@@ -29,6 +29,9 @@ class ProfileUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [200, 200]
   end
 
+
+
+
   version :small_thumb, from_version: :thumb do
     process resize_to_fill: [20, 20]
   end
