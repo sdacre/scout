@@ -80,6 +80,10 @@
         });
       </script>
       <div style="display: none;">
+        <% @u_reviews.all.each do |pinned|%>
+            <div id="marker_<%= pinned.id %>" title="pin_<%= pinned.place.id %>">
+            <i class="material-icons" style="color: red;">location_on</i>
+      </div>
 
         <% @u_reviews.all.each do |pinned| %>
 
@@ -110,13 +114,14 @@
 
 </div>
 
+
 <h2>Pinned places:</h2>
 <% @u_reviews.all.each do |pinned| %>
   <p><%= pinned.place.name %></p>
   <p><%= pinned.place.longitude %></p>
   <p><%= pinned.place.latitude %></p><br>
 <%end%>
- 
+
 
 <style>
   #marker {

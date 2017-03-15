@@ -1,0 +1,33 @@
+<div class="container1">
+
+    <div class="row">
+        <div class="col-sm-6 col-md-12">
+            <div class="thumbnail">
+              <%= form_for @city do |form| %>
+
+                <div class="text-field">
+                    <%= form.label :name %>
+                    <%= form.text_field :name, class: "form-control" %>
+                </div>
+
+                <div class="text-field">
+                    <%= form.label :link %>
+                    <%= form.text_area :link, class: "form-control" %>
+
+                    <div class="file-field">
+                        <%= form.label :photo %>
+                        <%= form.file_field :photo, multiple: true, class: "form-control" %>
+                    </div>
+                    <br>
+                    <div class="submit-field">
+                        <%= form.submit %>
+                    </div>
+                    <% end %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

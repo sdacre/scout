@@ -29,6 +29,7 @@
                             <li><%= link_to "My Profile", user_path(current_user) %></li>
                             <li><%= link_to "Log Out", sign_out_path, method: :delete %></li>
                             <li><%= link_to "Add Place", new_place_path, method: :get %></li>
+                            <li><%= link_to "Add City", new_city_path, method: :get %></li>
                               <li><%= link_to "See All Running Locations", places_path, method: :get %></li>
                         </ul>
 
@@ -89,13 +90,11 @@
         </div>
         <div class="col-sm-10">
         <h1 class="text-center font">
-        <% @places.each do |place| %>
-        <%= link_to place_path(place) do%>
+        <% @cities.each do |city| if @cities %>
+          <%= link_to places_path(query: city.name)do%>
 
-        <p class="padding"><%=image_tag place.image[0].thumb.url if place.image.any? %></p>
-
+          <p class="padding"><%=image_tag city.photo[0].thumb.url if city.photo.any?%></p>
         <% end %>
-
         <% end %>
 
 
