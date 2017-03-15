@@ -16,7 +16,6 @@
             <%= profile.button 'Upload', type: 'submit' %>
             <% end %>
         </div>
-        <%byebug%>
 
         <div class="col-md-5">
             <h2>Name:</h2>
@@ -80,7 +79,7 @@
       </script>
 
       <div style="display: none;">
-        <% @u_reviews.all.each do |pinned| if @u_revews%>
+        <% @u_reviews.all.each do |pinned| %>
             <div id="marker_<%= pinned.id %>" title="pin_<%= pinned.place.id %>">
             <i class="material-icons" style="color: red;">location_on</i>
       </div>
@@ -117,7 +116,7 @@
   <th>Difficulty: </th>
 </thead>
 </tr>
-<% @u_reviews.all.each do |pinned| if @u_reviews %>
+<% @u_reviews.all.each do |pinned| %>
 <tr>
 <tbody>
   <td><%= link_to pinned.place.name, place_path(pinned.place) %></td>
