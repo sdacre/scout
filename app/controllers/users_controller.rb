@@ -30,12 +30,9 @@ class UsersController < Clearance::UsersController
 	end
 
 	def index
-		u_arr = []
-		@users = User.all.each do |u|
-			u_arr << u.reviews.count
-		end
-		u_arr.order(:desc)
+		@users = User.all
 	end 
+
 
 	def create
 		@user = User.new(user_params)

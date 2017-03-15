@@ -1,4 +1,6 @@
 
 <% @users.each do |user| %>
 <%= user.first_name %>
-<%end%>
+
+	<%= user.reviews.count %>
+	<%end%>
