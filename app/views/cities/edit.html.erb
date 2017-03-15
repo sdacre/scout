@@ -1,0 +1,12 @@
+<div id="clearance" class="update">
+  <h2><%= t(".title") %></h2>
+
+    <%= render partial: '/cities/update'%>
+
+
+
+    <div class="other-links">
+      <p><%=link_to "Home", user_path(current_user)%>
+          <%=link_to "Index", cities_path%></p>
+    </div>
+</div>

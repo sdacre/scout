@@ -16,9 +16,8 @@ class PlacesController < ApplicationController
   def index
 
     @places = Place.all
- 
+
     @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
-    @places = @places.similar_to(params[:query]) if params[:query]
     if params[:search].present?
       @locations = Place.near(params[:search], 50, :order => :distance)
     else
@@ -26,14 +25,14 @@ class PlacesController < ApplicationController
     end
     render template: 'places/index' # render partial: 'places/index'
   end
-    
+
   def show
     # byebug
     @place         = Place.find(params[:id])
     @new_review    = @place.reviews.new
     @reviews       = @place.reviews.all
-    @place_reviews = Review.where(place_id: params[:id])      
-    render template: 'places/show'  
+    @place_reviews = Review.where(place_id: params[:id])
+    render template: 'places/show'
   end
 
 
@@ -58,24 +57,24 @@ class PlacesController < ApplicationController
 
   private
   def place_params
-    params.require(:place).permit(:name, 
-                                  :kind, 
-                                  :address, 
-                                  :city, 
-                                  :country, 
-                                  :difficulty, 
-                                  :description, 
+    params.require(:place).permit(:name,
+                                  :kind,
+                                  :address,
+                                  :city,
+                                  :country,
+                                  :difficulty,
+                                  :description,
                                   {image: []})
   end
 
   def review_params
-    params.require(:review).permit(:rate_general, 
-                                   :desc_general, 
-                                   :rate_safe, 
-                                   :desc_safe, 
-                                   :rate_clean, 
-                                   :desc_clean, 
-                                   :rate_scenery, 
+    params.require(:review).permit(:rate_general,
+                                   :desc_general,
+                                   :rate_safe,
+                                   :desc_safe,
+                                   :rate_clean,
+                                   :desc_clean,
+                                   :rate_scenery,
                                    :desc_scenery)
   end
 end
