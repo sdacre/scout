@@ -23,8 +23,6 @@
             <% if @client.nil? %>
             <%= link_to "Get stats from Strava", "/auth/strava" %><br>
 
-
-
             <% else %>
               <h2 class = "bgwell text-center">Latest runs from <%= link_to "https://www.strava.com/dashboard" do %>
    <%= image_tag "strava.png" %>
@@ -173,7 +171,6 @@
 <h2> Places you've run: </h2>
 <% @u_reviews.all.each do |pinned| %>
  <h2><i class="material-icons" style="color: red;">location_on</i><%= link_to pinned.place.name, place_path(pinned.place) %><hr></hr></h2>
-</r>
 <%end%>
 </div>
     </div>
