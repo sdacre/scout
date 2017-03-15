@@ -1,5 +1,3 @@
-<hr>
-
 <div class="container-fluid">
 	<div class ="row">
 		<div class="col-sm-1">
@@ -63,8 +61,8 @@
 		<% if @place_reviews.count < 1 %>
 			<h4>No reviews yet. Submit the first review now!</h4>
 		<% elsif @place_reviews.count == 1 %>
+      <% @place_reviews.each do |x| %>
 			<div>
-			<% @place_reviews.each do |x| %>
 				<div id="u_mean_<%= x.id %>"><strong><%= x.user.username %></strong>: </div><br>
 				<div id="u_gen_<%= x.id %>">Awesomeness: </div>
 				<p><%= x.desc_general %></p>
@@ -112,18 +110,23 @@
 	</div>
 
 <% elsif @place_reviews.count > 1 %>
+  <% @place_reviews.all.order(created_at: :desc).each do |y| %>
 <div>
-	<% @place_reviews.all.order(created_at: :desc).each do |y| %>
-	<div id="u_mean_<%= y.id %>"><strong><%= y.user.username %></strong>: </div><br>
-		<div id="u_gen_<%= y.id %>">Awesomeness: </div>
-		<p><%= y.desc_general %></p><br>
-		<div id="u_safe_<%= y.id %>">Safetyness: </div>
-		<p><%= y.desc_safe %></p><br>
-		<div id="u_clean_<%= y.id %>">Cleanliness: </div>
-		<p><%= y.desc_clean %></p><br>
-		<div id="u_scenery_<%= y.id %>">Scenery: </div>
-		<p><%= y.desc_scenery %></p><br>
-		<hr>
+  <div class='reviews'>
+    <div class='panel'>
+    	<div id="u_mean_<%= y.id %>"><strong><%= y.user.username %></strong>: </div><br>
+    		
+        <div id="u_gen_<%= y.id %>">Awesomeness: </div>
+    		<p><%= y.desc_general %></p><br>
+    		<div id="u_safe_<%= y.id %>">Safetyness: </div>
+    		<p><%= y.desc_safe %></p><br>
+    		<div id="u_clean_<%= y.id %>">Cleanliness: </div>
+    		<p><%= y.desc_clean %></p><br>
+    		<div id="u_scenery_<%= y.id %>">Scenery: </div>
+    		<p><%= y.desc_scenery %></p><br>
+    		
+    </div>
+  </div>      
 </div>
 		
  <!-- JS for eyisting reviews(multiple reviews) -->
@@ -160,28 +163,28 @@
 	    <div id="general" style="display: inline;">Awesomeness:<br></div>
 	</span>
 	<span>
-	    <%= f.text_field :desc_general, placeholder: "Elaborate your rating here" %>
+	    <%= f.text_field :desc_general, placeholder: "What do you think of this place in general?" %>
 	</span><br>
 
 	<span>
 	    <div id="safe" style="display: inline;">Safetyness:<br></div>
 	</span>
 	<span>
-	    <%= f.text_field :desc_safe, placeholder: "Elaborate your rating here" %>
+	    <%= f.text_field :desc_safe, placeholder: "You can elaborate your ratings here" %>
 	</span><br>
 
 	<span>
 	    <div id="clean" style="display: inline;">Cleanliness:<br></div>
 	</span>
 	<span>
-	    <%= f.text_field :desc_clean, placeholder: "Elaborate your rating here" %>
+	    <%= f.text_field :desc_clean, placeholder: "You can elaborate your ratings here" %>
 	</span><br>
 
 	<span>
 	    <div id="scenery" style="display: inline;">Scenery:<br></div>
 	</span>
 	<span>
-	    <%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
+	    <%= f.text_field :desc_scenery, placeholder: "You can elaborate your ratings here" %>
 	</span><br>
 	<br>
 		<% if current_user == nil %>
