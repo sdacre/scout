@@ -82,6 +82,15 @@
         });
       </script>
 
+      <div style="display: none;">
+
+        <% @u_reviews.all.each do |pinned| %>
+
+            <div id="marker_<%= pinned.id %>" title="pin_<%= pinned.place.id %>">
+            <i class="material-icons" style="color: red;">location_on</i>
+      </div>
+
+
       <% if @u_reviews != nil %>
       <div style="display: none;">
         <% @u_reviews.each do |pinned| %>
@@ -137,9 +146,33 @@
 </div>
 
 
+<h2>Scouted:</h2>
+<tr>
+<thead>
+  <th>Location: </th>
+  <th>Longitude: </th>
+  <th>Latitude: </th>
+  <th>Difficulty: </th>
+</thead>
+</tr>
+<% @u_reviews.all.each do |pinned| %>
+<tr>
+<tbody>
+  <td><%= link_to pinned.place.name, place_path(pinned.place) %></td>
+  <td><%= pinned.place.longitude %></td>
+  <td><%= pinned.place.latitude %></td>
+  <td><%= pinned.place.difficulty %></td>
+</tbody>
+</tr>
+
+
 <h2>Pinned places:</h2>
 <% @u_reviews.all.each do |pinned| %>
   <p><%= pinned.place.name %></p>
+
+  <p><%= pinned.place.longitude %></p>
+  <p><%= pinned.place.latitude %></p><br>
+
   <p><%= pinned.place.longitude %></p<script>
 
       var pos = ol.proj.fromLonLat([<%= pinned.place.longitude %>, <%= pinned.place.latitude %>]);
@@ -174,6 +207,7 @@
 <% @u_reviews.all.each do |pinned| %>
  <h2><i class="material-icons" style="color: red;">location_on</i><%= link_to pinned.place.name, place_path(pinned.place) %><hr></hr></h2>
 </r>
+
 <%end%>
 </div>
     </div>
