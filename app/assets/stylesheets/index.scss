@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans|Questrial');
 
 .jumbotron {
   padding-top: 0px;
-  font-family: Brisa Regular;
+  font-family: 'Big Caslon';
   background: url("bg1.jpg");
   width: auto;
   height: 650px;
@@ -12,7 +13,7 @@
 }
 
 .find-location {
-  font-family: Brisa Regular;
+  font-family: 'Big Caslon';
   width:150px;
   margin-left: auto;
   margin-right: auto;
@@ -34,9 +35,6 @@
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans|Questrial');
-
-
 /* Font Variables*/
 $julius-sans-one: 'Julius Sans One', sans-serif;
 $open-sans: 'Open Sans', sans-serif;
@@ -44,7 +42,7 @@ $questrial: 'Questrial', sans-serif;
 
 /* Styles*/
 .title {
-  font-family: $questrial
+  font-family: $questrial;
 }
 
 

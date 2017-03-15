@@ -66,13 +66,13 @@
 		<div id="u_mean_<%= x.id %>"><strong><%= x.user.username %></strong>: </div><br>
 		<div id="u_gen_<%= x.id %>">Awesomeness: </div>
 		<p><%= x.desc_general %></p>
-		
+
 		<div id="u_safe_<%= x.id %>">Safetyness: </div>
 		<p><%= x.desc_safe %></p>
-		
+
 		<div id="u_clean_<%= x.id %>">Cleanliness: </div>
 		<p><%= x.desc_clean %></p>
-		
+
 		<div id="u_scenery_<%= x.id %>">Scenery: </div>
 		<p><%= x.desc_scenery %></p>
 		<hr>
@@ -121,10 +121,10 @@
 		<p><%= y.desc_scenery %></p><br>
 		<hr>
 </div>
-		
+
  <!-- JS for eyisting reviews(multiple reviews) -->
 		<script>
-		
+
 
 		$('#u_gen_<%= y.id %>').raty({
 		  readOnly:   true,
@@ -147,7 +147,7 @@
 		});
 		</script>
 
-	<% end %>	
+	<% end %>
 <% end %>
 
 <!-- reviews#new / reviews#create -->
@@ -201,22 +201,22 @@ Ran here before? Write your review for this place!
 <script>
 $('#general').raty({
 	start:     2,
-  scoreName: 'review[rate_general]', 
+  scoreName: 'review[rate_general]',
 });
 
 $('#safe').raty({
   start:     2,
-  scoreName: 'review[rate_safe]', 
+  scoreName: 'review[rate_safe]',
 });
 
 $('#clean').raty({
   start:     2,
-  scoreName: 'review[rate_clean]', 
+  scoreName: 'review[rate_clean]',
 });
 
 $('#scenery').raty({
   start:     2,
-  scoreName: 'review[rate_scenery]', 
+  scoreName: 'review[rate_scenery]',
 });
 
 

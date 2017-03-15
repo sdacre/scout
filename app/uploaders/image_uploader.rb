@@ -40,18 +40,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     manipulate! do |medium|
       medium.combine_options do |c|
         c.gravity 'Center'
-        c.pointsize '40'
+        c.pointsize '30'
         c.draw "text 0,0 '#{self.model.name}'"
-        c.font 'Impact'
+        c.font 'Big Caslon'
         c.fill 'white'
       end
       medium
-    end    
+    end
   end
 
 
   version :medium do
-    process resize_to_fill:[500, 370]  
+    process resize_to_fill:[500, 370]
     end
 
 
