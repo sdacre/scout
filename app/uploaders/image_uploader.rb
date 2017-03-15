@@ -35,6 +35,23 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :add_text
   end
 
+  version :city do
+    process resize_to_fill:[300, 300]
+    process :add_city
+  end
+
+  def add_city
+    manipulate! do |medium|
+      medium.combine_options do |c|
+        c.gravity 'Center'
+        c.pointsize '40'
+        c.draw "text 0,0 '#{self.model.city}'"
+        c.font 'Impact'
+        c.fill 'white'
+      end
+      medium
+    end
+  end
 
   def add_text
     manipulate! do |medium|
@@ -46,12 +63,12 @@ class ImageUploader < CarrierWave::Uploader::Base
         c.fill 'white'
       end
       medium
-    end    
+    end
   end
 
 
   version :medium do
-    process resize_to_fill:[500, 370]  
+    process resize_to_fill:[500, 370]
     end
 
 
