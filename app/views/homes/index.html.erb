@@ -31,6 +31,7 @@
                         <ul class="dropdown-menu">
                             <li><%= link_to "My Profile", user_path(current_user) %></li>
                             <li><%= link_to "Log Out", sign_out_path, method: :delete %></li>
+
                         </ul>
 
                 </ul>
@@ -71,13 +72,11 @@
         </div>
         <div class="col-sm-10">
         <h1 class="text-center font">
-        <% @places.each do |place| %>
-        <%= link_to place_path(place) do%>
+        <% @cities.each do |city| if @cities %>
+          <%= link_to places_path(query: city.name)do%>
 
-        <p class="padding"><%=image_tag place.image[0].thumb.url if place.image.any? %></p>
-
+          <p class="padding"><%=image_tag city.photo[0].thumb.url if city.photo.any?%></p>
         <% end %>
-
         <% end %>
 
 

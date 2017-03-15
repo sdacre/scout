@@ -1,0 +1,26 @@
+
+
+<div class ="container">
+	<div class="row">
+      	<div class="col-sm-1">
+      	</div>
+      	<div class="col-sm-10">
+      	<h1 class="text-center font">
+      			<%= form_tag cities_path, :method => 'get' do %>
+	  				<%= text_field_tag :query, params[:query] %>
+	  				<%= submit_tag "Get moving", :name => nil %>
+	 					<% end %></h1>
+	      <% @cities.each do |city| %>
+				<%= link_to city_path(city) do%>
+				<p class="padding"><%=image_tag city.image.thumb.url if city.image.any? %></p>
+				<% end %>
+				<% end %>
+	      </div>
+      <div class="col-sm-1">
+    </div>
+  </div>
+
+<div class="other-links">
+  <p><%=link_to "Home", user_path(current_user)%>
+      <%=link_to "Index", cities_path%></p>
+</div>
