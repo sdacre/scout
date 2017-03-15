@@ -17,7 +17,7 @@ class PlacesController < ApplicationController
 
     @places = Place.all
 
-    @places = @places.search_places (params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
+    @places = @places.search_places(params[:query]) if params[:query] # .page(params[:page]).per_page(3) for pagination
     if params[:search].present?
       @locations = Place.near(params[:search], 50, :order => :distance)
     else
