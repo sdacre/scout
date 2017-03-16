@@ -11,14 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery.turbolinks
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
 //= require jquery_ujs
 //= require jquery.raty
-//= require bootstrap-sprockets
 //= require turbolinks
 //= require ol
+//= require map
 //= require_tree .
 
 

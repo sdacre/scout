@@ -52,6 +52,7 @@ gem 'jbuilder', '~> 2.5'
 # Use figaro to keep hidden files from uploading to github
 # gem 'figaro'
 # Use fog for storing documents with S3
+gem 'pg'
 gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -71,10 +72,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print'
-end
-
-group :production do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
