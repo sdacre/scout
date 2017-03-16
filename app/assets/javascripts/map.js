@@ -17,19 +17,22 @@ $(document).ready(function(){
 		map.getView().setZoom(map.getView().getZoom()+1);  
 	});
 
-	if ($("#ol-data-div").length > 0) {
-		var dataDiv = document.getElementById("ol-data-div");
-		var longitude = dataDiv.dataset.longitude;
-		var latitude = dataDiv.dataset.latitude;
-		var pos = ol.proj.fromLonLat([longitude, latitude]);
+	if ($(".ol-data-div").length > 0) {
+		$(".ol-data-div").each(function(elem){
+			var longitude = $(elem).data("longitude")
+			var latitude = $(elem).data("latitude")
+			var id = $(elem).data("id")
+			var pos = ol.proj.fromLonLat([longitude, latitude]);
 
-		// individual markers
-		var marker = new ol.Overlay({
-			position: pos,
-			positioning: 'center-center',
-			element: document.getElementById("marker_<%= pinned.id %>"),
-			stopEvent: false
-		});
-		map.addOverlay(marker);
+			// individual markers
+			var marker = new ol.Overlay({
+				position: pos,
+				positioning: 'center-center',
+				element: document.getElementById("marker_" + id),
+				stopEvent: false
+			});
+			map.addOverlay(marker);
+		})
+		
 	}
 });

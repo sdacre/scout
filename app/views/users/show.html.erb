@@ -1,7 +1,8 @@
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-3">
+  <div class="row">  
+    
+    <div class="thumbnail">
         <h2><%= @user.first_name %> 
           <%= @user.last_name %></h2><br>
           <%= form_for @user do |profile| %>
@@ -77,9 +78,11 @@
             <% @u_reviews.all.each do |pinned| %>
             <h2><i class="material-icons" style="color: red;">location_on</i><%= link_to pinned.place.name, place_path(pinned.place) %><hr></hr></h2>
           </r>
-          <div id="ol-data-div" data-longitude="<%= pinned.place.longitude %>" data-latitude="<%= pinned.place.latitude %>"></div>
+          <div class="ol-data-div" data-longitude="<%= pinned.place.longitude %>" data-latitude="<%= pinned.place.latitude %>" data-id="<%= pinned.id %>"></div>
           <%end%>
         </div>
+      </div>
+      </div>
       </div>
 
 
