@@ -30,7 +30,7 @@
             <p><b>Average Speed</b>  <%= (@runs[0]["average_speed"]).round(1) %> mph</p>
             <p><b>Max Speed</b>     <%= (@runs[0]["max_speed"]).round(1)%> mph</p>
             <br/>
-            <hr></hr>
+        
             <% if @runs[1] %>
             <p class ="bgwell"><b>Date</b>           <%=   Date.strptime((@runs[1]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>
               <p><b>Distance</b>   <%= (@runs[1]["distance"]/1000).round(2) %> km</p>
@@ -39,7 +39,7 @@
               <p><b>Average Speed</b>  <%= (@runs[1]["average_speed"]).round(1) %> mph </p>
               <p><b>Max Speed</b>      <%= (@runs[1]["max_speed"]).round(1) %> mph </p><br>
               <% end %>
-              <hr></hr>
+            
               <% if @runs[2] %>
               <p class ="bgwell"><b>Date</b>           <%=   Date.strptime((@runs[2]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %> 
                 <p><b>Distance</b>  <%= (@runs[2]["distance"]/1000).round(2) %> km</p>
@@ -55,7 +55,7 @@
               <p><b>Average Speed</b>  <%= (@runs[3]["average_speed"]).round(1) %> mph </p>
               <p><b>Max Speed</b>      <%= (@runs[3]["max_speed"]).round(1) %> mph </p><br>
               <% end %>
-              <hr></hr> <% if @runs[4] %>
+              <% if @runs[4] %>
             <p class ="bgwell"><b>Date</b>           <%=   Date.strptime((@runs[1]["start_date"]).gsub(/[T.*]/, ""), "%Y-%m-%d")  %>
               <p><b>Distance</b>   <%= (@runs[4]["distance"]/1000).round(2) %> km</p>
               <p><b>Time</p></b>      <%= (@runs[4]["moving_time"].to_f/60).round(2) %> minutes </p>
@@ -63,7 +63,7 @@
               <p><b>Average Speed</b>  <%= (@runs[4]["average_speed"]).round(1) %> mph </p>
               <p><b>Max Speed</b>      <%= (@runs[4]["max_speed"]).round(1) %> mph </p><br>
               <% end %>
-              <hr></hr>
+              
                 <% end %>
                 <% end %>
               </h5>
