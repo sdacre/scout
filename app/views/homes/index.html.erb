@@ -1,5 +1,5 @@
 
-      <div class="jumbotron">
+      <div class="jumbotron title">
         <nav class="navbar navbar-default" style="margin-bottom:0; background-color:transparent;">
 
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand">
-                    <i class="fa fa-bed" aria-hidden="true"></i>
+                    <i class="fa fa-child" aria-hidden="true"></i>
                     <%= link_to "Scout" , root_path %>
                 </div>
             </div>
@@ -21,6 +21,10 @@
 
                 <% if signed_in? %>
                 <ul class="nav navbar-nav navbar-right">
+                  <li><%= link_to "Add Place", new_place_path, method: :get %></li>
+                  <li><%= link_to "Cities", places_path, method: :get %></li>
+                  <li><%= link_to "My Runs", user_path(current_user) %></li>
+                  <li><%= link_to "Add City", new_city_path, method: :get %></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %>
                             <span class="caret"></span>
@@ -28,9 +32,7 @@
                         <ul class="dropdown-menu">
                             <li><%= link_to "My Profile", user_path(current_user) %></li>
                             <li><%= link_to "Log Out", sign_out_path, method: :delete %></li>
-                            <li><%= link_to "Add Place", new_place_path, method: :get %></li>
-                            <li><%= link_to "Add City", new_city_path, method: :get %></li>
-                              <li><%= link_to "See All Running Locations", places_path, method: :get %></li>
+
                         </ul>
 
                 </ul>
@@ -44,44 +46,25 @@
 
     </ul>
 </div>
+</nav>
 <!-- /.navbar-collapse -->
 
           <div class="container-fluid">
             <div class="container">
 
 
-              <h1 class="title text-center" style="margin-left: auto; margin-right: auto; width: 1000px; height: 80px;">Where do you want to run?</h1>
+              <h1 class="title text-center" style="margin-left: auto; margin-right: auto; width: 1000px; height: 80px; font-family: 'Optima';">Where do you want to run?</h1>
 
-              <div class="find-location">
-                <div class="btn-group" style="display: inline-flex;">
-                  <button type="button" class="btn btn-default">Find a location</button>
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">Kuala Lumpur</a>
-                    </li>
-                    <li>
-                      <a href="#">Ipoh</a>
-                    </li>
-                    <li>
-                      <a href="#">Malacca</a>
-                    </li>
-                    <li>
-                      <a href="#">Johor Bahru</a>
-                    </li>
-                    <li>
-                      <a href="#">Penang</a>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-        </div>
-                <!-- Split button -->
+              <%= form_tag places_path, :method => 'get', style: "width: 40%; margin-left: auto; margin-right: auto;" do %>
+                    <div class="input-group">
+                        <%= text_field_tag :query, params[:query], :class => 'form-control', :placeholder => 'Search for a city...' %>
+                        <span class="input-group-btn">
+                            <%= submit_tag "Get moving", :name => nil, :class => 'btn btn-default'%>
+                        </span>
+                        <% end %>
+                    </div>
+</div>
+</div>
     </div>
 
 <div class ="container">
@@ -90,7 +73,7 @@
         </div>
         <div class="col-sm-10">
         <h1 class="text-center font">
-        <% @cities.each do |city| if @cities %>
+        <% @cities.each do |city| %>
           <%= link_to places_path(query: city.name)do%>
 
           <p class="padding"><%=image_tag city.photo[0].thumb.url if city.photo.any?%></p>

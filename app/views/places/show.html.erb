@@ -1,12 +1,12 @@
-<hr>
-
 <div class="container-fluid">
 	<div class ="row">
 		<div class="col-sm-1">
   	</div>
   	<div class="col-sm-10 title inline">
   	<div class="container">
-			<h1><div id="mean_rate"><%= @place.name %> <br></h1></div><br>
+    </div>
+    <div id="mean_rate"><h2><%= @place.name %></h2></div>
+    <br>
 			Difficulty: <%= @place.difficulty %><br>
 			Description: <%= @place.description %><br>
 			Kind: <%= @place.kind %><br>
@@ -41,195 +41,214 @@
 				</div>
 			</div>
 		</div>
-
-
-		<%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
+  
+    <%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
     <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %>
-		<% end %>
-
-		<% if current_user %>
-		<p><%=link_to "Home", users_path(current_user)%>
-		    <%=link_to "Index", places_path%>
-		    <%=link_to "Update", edit_place_path(@place) %>
-		</p>
-		<% else %>
-		<%= link_to t(".sign_up"), sign_up_path %>
-		<%end%>
+    <% end %>
+		<%=link_to "Update", edit_place_path(@place) %>
 </div>
 
 <div class="container">
-	<div>
-		<h4><strong>What others think of this place: </strong></h4>
-		<% if @place_reviews.count < 1 %>
-			<h4>No reviews yet. Submit the first review now!</h4>
-		<% elsif @place_reviews.count == 1 %>
-			<div>
-			<% @place_reviews.each do |x| %>
-				<div id="u_mean_<%= x.id %>"><strong><%= x.user.username %></strong>: </div><br>
-				<div id="u_gen_<%= x.id %>">Awesomeness: </div>
-				<p><%= x.desc_general %></p>
-				
-				<div id="u_safe_<%= x.id %>">Safetyness: </div>
-				<p><%= x.desc_safe %></p>
-				
-				<div id="u_clean_<%= x.id %>">Cleanliness: </div>
-				<p><%= x.desc_clean %></p>
-				
-				<div id="u_scenery_<%= x.id %>">Scenery: </div>
-				<p><%= x.desc_scenery %></p>
-				<hr>
-			</div>
-	<!-- JS for existing reviews(single reviews) -->
-			<script>
-			$('#u_mean_<%= x.id %>').raty({
-			  readOnly:   true,
-			  starHalf:		'star-half.png',
-				start:   		<%= avg_user_rating(x) %>,
-			});
+	<div class="row">
+  <div class="col-xs-12">
+    <% if @place_reviews.count < 1 %>
+      <h4>No reviews yet. Submit the first review now!</h4>
+    <% elsif @place_reviews.count == 1 %>
+		<h4 style="text-align: center;"><strong>Reviews for this place: </strong></h4>
+      <div class="reviews">
+        <% @place_reviews.each do |x| %>
+          <div class='panel'>
+            <div class="container" id="panel_container">
+              <div class='panel'>
+                <div class="container">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="well" style=" height: 200px; width: 500px;">
+                          <div class="col-sm-3">
+                            <div style="width: 110px; height: auto;">
+                              <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
+                            </div> <!-- closing for review dp -->
+                          </div> <!-- closing for col sm 3 -->
+                          <div class="col-sm-7">
+                            <strong><div id="u_mean_<%= x.id %>">Overall rating: </div></strong>
+                            <div id="u_gen_<%= x.id %>">Awesomeness: </div>
+                            <div id="u_safe_<%= x.id %>">Safetyness: </div>
+                            <div id="u_clean_<%= x.id %>">Cleanliness: </div>
+                            <div id="u_scenery_<%= x.id %>">Scenery: </div>
+                            <p style="margin-left: 10px;"><%= x.desc_general %>  •  <%= x.desc_safe %>  •  <%= x.desc_clean %>  •  <%= x.desc_scenery %></p>
+                          </div> <!-- closing for col-sm-7 -->
+                        </div> <!-- closing for well -->
+                      </div> <!-- closing for col lg 6 --> 
+                    </div> <!-- closing for row -->
+                  </div> <!-- closing for container -->
+                </div> <!-- closing for panel -->
+            
+           <!-- JS for existing reviews(single reviews) -->
+          <script>
+          $('#u_mean_<%= x.id %>').raty({
+            readOnly:   true,
+            starHalf:   'star-half.png',
+            start:      <%= avg_user_rating(x) %>,
+          });
 
-			$('#u_gen_<%= x.id %>').raty({
-			  readOnly:   true,
-				start:   		<%= x.rate_general %>,
-			});
+          $('#u_gen_<%= x.id %>').raty({
+            readOnly:   true,
+            start:      <%= x.rate_general %>,
+          });
 
-			$('#u_safe_<%= x.id %>').raty({
-			  readOnly:   true,
-				start:   		<%= x.rate_safe %>,
-			});
+          $('#u_safe_<%= x.id %>').raty({
+            readOnly:   true,
+            start:      <%= x.rate_safe %>,
+          });
 
-			$('#u_clean_<%= x.id %>').raty({
-			  readOnly:   true,
-				start:   		<%= x.rate_clean %>,
-			});
+          $('#u_clean_<%= x.id %>').raty({
+            readOnly:   true,
+            start:      <%= x.rate_clean %>,
+          });
 
-			$('#u_scenery_<%= x.id %>').raty({
-			  readOnly:   true,
-				start:   		<%= x.rate_scenery %>,
-			});
-			</script>
-		<% end %>
-		</div>
-	</div>
+          $('#u_scenery_<%= x.id %>').raty({
+            readOnly:   true,
+            start:      <%= x.rate_scenery %>,
+          });
+          </script>
+        <% end %> <!-- end for do x -->
 
-<% elsif @place_reviews.count > 1 %>
-<div>
-	<% @place_reviews.all.order(created_at: :desc).each do |y| %>
-	<div id="u_mean_<%= y.id %>"><strong><%= y.user.username %></strong>: </div><br>
-		<div id="u_gen_<%= y.id %>">Awesomeness: </div>
-		<p><%= y.desc_general %></p><br>
-		<div id="u_safe_<%= y.id %>">Safetyness: </div>
-		<p><%= y.desc_safe %></p><br>
-		<div id="u_clean_<%= y.id %>">Cleanliness: </div>
-		<p><%= y.desc_clean %></p><br>
-		<div id="u_scenery_<%= y.id %>">Scenery: </div>
-		<p><%= y.desc_scenery %></p><br>
-		<hr>
-</div>
-		
- <!-- JS for eyisting reviews(multiple reviews) -->
-		<script>
-		$('#u_gen_<%= y.id %>').raty({
-		  readOnly:   true,
-			start:   		<%= y.rate_general %>,
-		});
+    <% elsif @place_reviews.count > 1 %>
+    <h4 style="text-align: center;"><strong>Reviews for this place: </strong></h4>
+    <div class="reviews">
+      <% @place_reviews.all.order(created_at: :desc).each do |y| %>
+        <div class="container" id="panel_container">
+          <div class='panel'>
+            <div class="container">
+                <div class="row">
+                  <div class="col-lg-6" style="right: 15px; bottom: 10px;">
+                    <div class="well" style=" height: 200px; width: 550px;">
+                      <div class="col-sm-3">
+                        <div style="width: 110px; height: auto;">
+                          <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
+                        </div> <!-- closing for review dp -->
+                      </div> <!-- closing for col sm 3 -->
+                      <div class="col-sm-7">
+                        <strong><div id="u_mean_<%= y.id %>">Overall rating: </div></strong>
+                        <div id="u_gen_<%= y.id %>">Awesomeness: </div>
+                        <div id="u_safe_<%= y.id %>">Safetyness: </div>
+                        <div id="u_clean_<%= y.id %>">Cleanliness: </div>
+                        <div id="u_scenery_<%= y.id %>">Scenery: </div>
+                        <p style="margin-left: 10px;"><%= y.desc_general %>  •  <%= y.desc_safe %>  •  <%= y.desc_clean %>  •  <%= y.desc_scenery %></p>
+                      </div> <!-- closing for col-sm-7 -->
+                    </div> <!-- closing for well -->
+                  </div> <!-- closing for col lg 6 --> 
+                </div> <!-- closing for row -->
+              </div> <!-- closing for container -->
+            </div> <!-- closing for panel -->
+    
+     <!-- JS for (multiple reviews) -->
+        <script>
+        $('#u_mean_<%= y.id %>').raty({
+            readOnly:   true,
+            starHalf:   'star-half.png',
+            start:      <%= avg_user_rating(y) %>,
+          });
 
-		$('#u_safe_<%= y.id %>').raty({
-		  readOnly:   true,
-			start:   		<%= y.rate_safe %>,
-		});
+        $('#u_gen_<%= y.id %>').raty({
+          readOnly:   true,
+          start:      <%= y.rate_general %>,
+        });
 
-		$('#u_clean_<%= y.id %>').raty({
-		  readOnly:   true,
-			start:   		<%= y.rate_clean %>,
-		});
+        $('#u_safe_<%= y.id %>').raty({
+          readOnly:   true,
+          start:      <%= y.rate_safe %>,
+        });
 
-		$('#u_scenery_<%= y.id %>').raty({
-		  readOnly:   true,
-			start:   		<%= y.rate_scenery %>,
-		});
-		</script>
+        $('#u_clean_<%= y.id %>').raty({
+          readOnly:   true,
+          start:      <%= y.rate_clean %>,
+        });
 
-	<% end %>	
-<% end %>
+        $('#u_scenery_<%= y.id %>').raty({
+          readOnly:   true,
+          start:      <%= y.rate_scenery %>,
+        });
+        </script>
+      <% end %> <!-- end for do |y| -->
+    </div>   <!-- closing div for 'reviews' -->
+  <% end %>   <!-- end for elsif -->
+  </div> <!-- end of col-xs-12-->
+  </div> <!-- end of row-->
+</div> <!-- end of container-->
 
 <!-- reviews#new / reviews#create -->
 <div class="container">
-	Ran here before? Write your review for this place!
-	<%= form_for [@place, @new_review] do |f| %>
-	<span>
-	    <div id="general" style="display: inline;">Awesomeness:<br></div>
-	</span>
-	<span>
-	    <%= f.text_field :desc_general, placeholder: "Elaborate your rating here" %>
-	</span><br>
+  Ran here before? Write your review for this place!
+  <%= form_for [@place, @new_review] do |f| %>
+  <span>
+      <div id="general" style="display: inline;">Awesomeness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_general, placeholder: "What do you think of this place in general?" %>
+  </span><br>
 
-	<span>
-	    <div id="safe" style="display: inline;">Safetyness:<br></div>
-	</span>
-	<span>
-	    <%= f.text_field :desc_safe, placeholder: "Elaborate your rating here" %>
-	</span><br>
+  <span>
+      <div id="safe" style="display: inline;">Safetyness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_safe, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
 
-	<span>
-	    <div id="clean" style="display: inline;">Cleanliness:<br></div>
-	</span>
-	<span>
-	    <%= f.text_field :desc_clean, placeholder: "Elaborate your rating here" %>
-	</span><br>
+  <span>
+      <div id="clean" style="display: inline;">Cleanliness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_clean, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
 
-	<span>
-	    <div id="scenery" style="display: inline;">Scenery:<br></div>
-	</span>
-	<span>
-	    <%= f.text_field :desc_scenery, placeholder: "Elaborate your rating here" %>
-	</span><br>
-	<br>
-		<% if current_user == nil %>
-			<%= link_to "Log in to submit your rating!", sign_in_path %>
-		<% else %>
-			<%= f.submit value: "Submit my rating!" %>
-		<% end %>
-	<% end %>
+  <span>
+      <div id="scenery" style="display: inline;">Scenery:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_scenery, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
+  <br>
+    <% if current_user == nil %>
+      <%= link_to "Log in to submit your rating!", sign_in_path %>
+    <% else %>
+      <%= f.submit value: "Submit my rating!" %>
+    <% end %>
+  <% end %>
 
-	<% if current_user %>
-	<p><%=link_to "Home", users_path(current_user)%>
-	  <%=link_to "Index", places_path%>
-	  <%=link_to "Update", edit_place_path(@place) %>
-	</p>
-	<% else %>
-	  <%= link_to t(".sign_up"), sign_up_path %>
-	<% end %>
+  <!-- JS for star ratings -->
+  <script>
+  $('#general').raty({
+    start:     2,
+    scoreName: 'review[rate_general]', 
+  });
 
-	<!-- JS for star ratings -->
-	<script>
-	$('#general').raty({
-		start:     2,
-	  scoreName: 'review[rate_general]', 
-	});
+  $('#safe').raty({
+    start:     2,
+    scoreName: 'review[rate_safe]', 
+  });
 
-	$('#safe').raty({
-	  start:     2,
-	  scoreName: 'review[rate_safe]', 
-	});
+  $('#clean').raty({
+    start:     2,
+    scoreName: 'review[rate_clean]', 
+  });
 
-	$('#clean').raty({
-	  start:     2,
-	  scoreName: 'review[rate_clean]', 
-	});
-
-	$('#scenery').raty({
-	  start:     2,
-	  scoreName: 'review[rate_scenery]', 
-	});
+  $('#scenery').raty({
+    start:     2,
+    scoreName: 'review[rate_scenery]', 
+  });
 
 
-	$('#mean_rate').raty({
-	  half:       true,
-	  start:   		<%= avg_place_rating(@place) %>,
-	  readOnly:   true,
-	  starHalf:   'star-half-big.png',
-	  starOff:    'star-off-big.png',
-	  starOn:     'star-on-big.png'
-	});
-	</script>
+  $('#mean_rate').raty({
+    half:       true,
+    start:      <%= avg_place_rating(@place) %>,
+    readOnly:   true,
+    starHalf:   'star-half-big.png',
+    starOff:    'star-off-big.png',
+    starOn:     'star-on-big.png'
+  });
+  </script>
 </div>
+<script>
+  speed = 600
+</script>

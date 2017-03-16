@@ -1,3 +1,50 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.profile img {
+	border-radius: 100%;
+}
+
+.mapdiv {
+	display: inline-block;
+}
+
+.top5 { margin-top:5%; }
+.top7 { margin-top:7%; }
+.top10 { margin-top:10%; }
+.top15 { margin-top:15%; }
+.top17 { margin-top:17%; }
+.top30 { margin-top:30%; }
+
+
+
+.bgwell {
+	color: #fc4c02;
+}
+
+.bgwell img {
+	width: 200px;
+	height: 100px;
+}
+
+  #marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  }
+  
+  #city {
+    text-decoration: none;
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
+  .popover-content {
+    min-width: 180px;
+  }
+  #map {
+    position: relative;
+  }
