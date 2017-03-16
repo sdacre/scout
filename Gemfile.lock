@@ -383,7 +383,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-strava-oauth2 (~> 0.0.2)
-  pg (~> 0.18)
+  pg
   pg_search
   puma (~> 3.0)
   rails (~> 5.0.2)

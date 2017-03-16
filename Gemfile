@@ -25,7 +25,6 @@ gem 'clearance'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -53,6 +52,7 @@ gem 'jbuilder', '~> 2.5'
 # Use figaro to keep hidden files from uploading to github
 # gem 'figaro'
 # Use fog for storing documents with S3
+gem 'pg'
 gem 'fog', require: 'fog/aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
