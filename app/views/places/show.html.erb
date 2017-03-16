@@ -47,16 +47,14 @@
 		<% end %>
 
 		<% if current_user %>
-		<p><%=link_to "Home", users_path(current_user)%>
-		    <%=link_to "Index", places_path%>
-		    <%=link_to "Update", edit_place_path(@place) %>
+		   <p><%=link_to "Update", edit_place_path(@place) %>
 		</p>
 		<% else %>
 		<%= link_to t(".sign_up"), sign_up_path %>
 		<%end%>
 </div>
 
-<div class="container thumbnail text-center">
+<div class="container text-center">
 	<div class="row">
   <div class="col-xs-12">
     <% if @place_reviews.count < 1 %>
@@ -71,10 +69,9 @@
                 <div class="container">
                     <div class="row">
                      <div class="col-lg-6" style="right: 15px; bottom: 10px;">
-                        <div class="well" style=" height: 200px; width: 550px;">
+                        <div class="well" style=" height: 200px; width: 550px; margin-left: auto; margin-right: auto;">
                           <div class="col-sm-3">
                             <div style="width: 110px; height: auto;">
-                              <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
                             </div> <!-- closing for review dp -->
                           </div> <!-- closing for col sm 3 -->
                           <div class="col-sm-7">
