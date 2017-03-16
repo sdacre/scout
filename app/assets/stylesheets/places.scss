@@ -1,8 +1,18 @@
 body {
   background-color : #eee ;
 }
+
+/*#image_username {
+  height: 116px;
+  width: 100px;
+}
+*/
+#username {
+  width: 60px;
+}
+
 .reviews {
-  width : 800px; 
+  width : 600px; 
   height : 250px;
   overflow : hidden ;
   background-color : #fff ;
@@ -15,9 +25,26 @@ body {
   width : 100%;
   max-height: 100%;
   position : absolute ; 
+  padding: 20px;
+  height: 250px;
 }
 .PanelAct {
-  left : 0 ;
+  left : 5px ;
+  bottom: 0px;
+  top: 20px;
+}
+
+#panel_container {
+  width: 800px;
+  height: 250px;
+}
+
+#user_n_img_con {
+  height: 170px;
+  width: 150px;
+  float: left;
+  margin: 0;
+  padding: 0;
 }
 
 #zzz { 
@@ -40,6 +67,24 @@ png images background
     background : #96c465 ;
 }*/
 /*== Removal End==*/
+
+#ratings_stars_con {
+  height: 200px;
+  width: 400px;
+  padding: 0;
+  margin-right: 10%;
+  margin-bottom: 10%;
+  margin-left: 50%;
+}
+
+#ratings_stars_row {
+  height: 200px;
+  width: 400px;
+}
+
+/*#ratings_stars {
+
+}*/
 
 .panel p {
   float : left ; 
