@@ -18,6 +18,7 @@
 //= require jquery.raty
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require ol
 //= require_tree .
 
 
