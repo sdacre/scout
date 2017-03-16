@@ -44,7 +44,7 @@
 
 
 		<%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
-    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %>
+    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true&key=AIzaSyDnPc5_WXJDR79lWO4ATMmBjEpBYslx3u8" %>
 		<% end %>
 
 		<% if current_user %>
