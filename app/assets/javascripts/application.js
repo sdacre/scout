@@ -19,6 +19,9 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on('turbolinks:load', function() {
-   $( '.item:first' ).addClass( 'active');
-});
+
+
+
+$(document).addEventListener("turbolinks:load", function() {
+  $( '.item:first' ).addClass( 'active');
+})
