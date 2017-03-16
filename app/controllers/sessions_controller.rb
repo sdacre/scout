@@ -6,12 +6,10 @@ class SessionsController < Clearance::SessionsController
           user = authentication.user
           authentication.update_token(auth_hash)
           @next = user_path(user)
-          @notice = 'Please wait a moment while Strava migrates your information!'
         elsif authentication.user.nil?
             authentication.user_id = current_user.id
             authentication.update_token(auth_hash)
            @next = user_path(current_user)
-           @notice = 'Sorry! You must have a Strava Account to use this feature.'
          else
         @next = user_path(current_user)
      end
@@ -24,12 +22,10 @@ class SessionsController < Clearance::SessionsController
         if authentication.user
             user = authentication.user
             authentication.update_token(auth_hash)
-            @next = root_url
-            @notice = 'Signed in!'
+            @next = 
         else
             user = User.create_with_auth_and_hash(authentication, auth_hash)
             @next = edit_user_path(user)
-            @notice = 'User created - confirm or edit details...'
         end
         sign_in(user)
         redirect_to @next, notice: @notice
