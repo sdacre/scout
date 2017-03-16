@@ -57,7 +57,7 @@
               <% if @u_reviews != nil %>
               <div style="display: none;">
                 <% @u_reviews.each do |pinned| %>
-                <div id="ol-data-div" data-longitude="<%= pinned.place.longitude %>" data-latitude="<%= pinned.place.latitude %>"></div>
+                <div id="marker_<%= pinned.id %>" title="pin_<%= pinned.place.id %>">
                   <i class="material-icons" style="color: red;">location_on</i>
                 </div>
                 <% end %>
