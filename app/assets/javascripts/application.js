@@ -21,6 +21,3 @@
 //= require ol
 //= require map
 //= require_tree .
-
-
-
