@@ -47,8 +47,6 @@
 		<% end %>
 
 		<% if current_user %>
-		   <p><%=link_to "Update", edit_place_path(@place) %>
-		</p>
 		<% else %>
 		<%= link_to t(".sign_up"), sign_up_path %>
 		<%end%>
@@ -130,7 +128,7 @@
                     <div class="well" style=" height: 200px; width: 550px; margin-left: 300px;">
                       <div class="col-sm-3">
                         <div style="width: 110px; height: auto;">
-                          <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
+       
                         </div> <!-- closing for review dp -->
                       </div> <!-- closing for col sm 3 -->
                       <div class="col-sm-7">
