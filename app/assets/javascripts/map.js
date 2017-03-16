@@ -18,7 +18,7 @@ $(document).ready(function(){
 	});
 
 	if ($(".ol-data-div").length > 0) {
-		$(".ol-data-div").each(function(elem){
+		$(".ol-data-div").each(function(idx, elem){
 			var longitude = $(elem).data("longitude")
 			var latitude = $(elem).data("latitude")
 			var id = $(elem).data("id")
@@ -33,6 +33,5 @@ $(document).ready(function(){
 			});
 			map.addOverlay(marker);
 		})
-		
 	}
 });
