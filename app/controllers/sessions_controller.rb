@@ -10,9 +10,7 @@ class SessionsController < Clearance::SessionsController
             authentication.user_id = current_user.id
             authentication.update_token(auth_hash)
            @next = user_path(current_user)
-         else
-        @next = user_path(current_user)
-     end
+       end
      redirect_to @next, notice: @notice
    end
 
