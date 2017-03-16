@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
 //= require jquery_ujs
@@ -21,7 +22,3 @@
 
 
 
-
-$(document).addEventListener("turbolinks:load", function() {
-  $( '.item:first' ).addClass( 'active');
-})
