@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 <d<div class="thumbnail">
+=======
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
 <div class="container-fluid">
 	<div class ="row">
 		<div class="col-sm-1">
   	</div>
   	<div class="col-sm-10 title inline">
   	<div class="container">
-			<h1><div id="mean_rate"><%= @place.name %> <br></h1></div><br>
+    </div>
+    <div id="mean_rate"><h2><%= @place.name %></h2></div>
+    <br>
 			Difficulty: <%= @place.difficulty %><br>
 			Description: <%= @place.description %><br>
 			Kind: <%= @place.kind %><br>
@@ -40,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 
 
 		<%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
@@ -55,6 +61,18 @@
 <div class="container text-center">
 	<div class="row">
   <div class="col-xs-12" style="margin-left: auto; margin-right: auto; width: 1000px;">
+=======
+  
+    <%= link_to "https://www.google.com/maps/dir/#{@place.latitude},#{@place.longitude}/" do %>
+    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?markers=#{@place.latitude}%2C#{@place.longitude}&zoom=15&scale=false&size=497x367&maptype=roadmap&format=png&visual_refresh=true" %>
+    <% end %>
+		<%=link_to "Update", edit_place_path(@place) %>
+</div>
+
+<div class="container">
+	<div class="row">
+  <div class="col-xs-12">
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
     <% if @place_reviews.count < 1 %>
       <h4>No reviews yet. Submit the first review now!</h4>
     <% elsif @place_reviews.count == 1 %>
@@ -64,6 +82,7 @@
           <div class='panel'>
             <div class="container" id="panel_container">
               <div class='panel'>
+<<<<<<< HEAD
                 <div class="container" style="margin-left: auto; margin-right: auto;">
                     <div class="row">
                      <div class="col-lg-6" style="right: 15px; bottom: 10px;">
@@ -73,6 +92,18 @@
                             </div> <!-- closing for review dp -->
                           </div> <!-- closing for col sm 3 -->
                           <div class="col-sm-12" style="margin-left: auto; margin-right: auto; ">
+=======
+                <div class="container">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="well" style=" height: 200px; width: 500px;">
+                          <div class="col-sm-3">
+                            <div style="width: 110px; height: auto;">
+                              <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
+                            </div> <!-- closing for review dp -->
+                          </div> <!-- closing for col sm 3 -->
+                          <div class="col-sm-7">
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
                             <strong><div id="u_mean_<%= x.id %>">Overall rating: </div></strong>
                             <div id="u_gen_<%= x.id %>">Awesomeness: </div>
                             <div id="u_safe_<%= x.id %>">Safetyness: </div>
@@ -118,17 +149,28 @@
 
     <% elsif @place_reviews.count > 1 %>
     <h4 style="text-align: center;"><strong>Reviews for this place: </strong></h4>
+<<<<<<< HEAD
     <div class="reviews text-center">
+=======
+    <div class="reviews">
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
       <% @place_reviews.all.order(created_at: :desc).each do |y| %>
         <div class="container" id="panel_container">
           <div class='panel'>
             <div class="container">
                 <div class="row">
                   <div class="col-lg-6" style="right: 15px; bottom: 10px;">
+<<<<<<< HEAD
                     <div class="well" style=" height: 200px; width: 550px; margin-left: 300px;">
                       <div class="col-sm-3">
                         <div style="width: 110px; height: auto;">
        
+=======
+                    <div class="well" style=" height: 200px; width: 550px;">
+                      <div class="col-sm-3">
+                        <div style="width: 110px; height: auto;">
+                          <%= image_tag("runner-dp.png", style: "width: 100px; height: 100px") %>
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
                         </div> <!-- closing for review dp -->
                       </div> <!-- closing for col sm 3 -->
                       <div class="col-sm-7">
@@ -181,6 +223,7 @@
 </div> <!-- end of container-->
 
 <!-- reviews#new / reviews#create -->
+<<<<<<< HEAD
 <div class="container text-center">
 	Ran here before? Write your review for this place!
 	<%= form_for [@place, @new_review] do |f| %>
@@ -263,3 +306,79 @@
 </div>
 </div>
 
+=======
+<div class="container">
+  Ran here before? Write your review for this place!
+  <%= form_for [@place, @new_review] do |f| %>
+  <span>
+      <div id="general" style="display: inline;">Awesomeness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_general, placeholder: "What do you think of this place in general?" %>
+  </span><br>
+
+  <span>
+      <div id="safe" style="display: inline;">Safetyness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_safe, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
+
+  <span>
+      <div id="clean" style="display: inline;">Cleanliness:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_clean, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
+
+  <span>
+      <div id="scenery" style="display: inline;">Scenery:<br></div>
+  </span>
+  <span>
+      <%= f.text_field :desc_scenery, placeholder: "You can elaborate your ratings here" %>
+  </span><br>
+  <br>
+    <% if current_user == nil %>
+      <%= link_to "Log in to submit your rating!", sign_in_path %>
+    <% else %>
+      <%= f.submit value: "Submit my rating!" %>
+    <% end %>
+  <% end %>
+
+  <!-- JS for star ratings -->
+  <script>
+  $('#general').raty({
+    start:     2,
+    scoreName: 'review[rate_general]', 
+  });
+
+  $('#safe').raty({
+    start:     2,
+    scoreName: 'review[rate_safe]', 
+  });
+
+  $('#clean').raty({
+    start:     2,
+    scoreName: 'review[rate_clean]', 
+  });
+
+  $('#scenery').raty({
+    start:     2,
+    scoreName: 'review[rate_scenery]', 
+  });
+
+
+  $('#mean_rate').raty({
+    half:       true,
+    start:      <%= avg_place_rating(@place) %>,
+    readOnly:   true,
+    starHalf:   'star-half-big.png',
+    starOff:    'star-off-big.png',
+    starOn:     'star-on-big.png'
+  });
+  </script>
+</div>
+<script>
+  speed = 600
+</script>
+>>>>>>> d9c254bbab6a07a4c6fa29c25b3028e5a1c94cc4
