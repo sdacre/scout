@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   root 'homes#index'
 
-  get "/auth/:strava/callback" => "sessions#strava_from_omniauth"
+  # get "/auth/:strava/callback" => "sessions#strava_from_omniauth"
   get "/auth/:facebook/callback" => "sessions#create_from_omniauth"
 
 end
